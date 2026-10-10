@@ -1,14 +1,11 @@
 import AppLayout from "#layouts/AppLayout.tsx";
 import FormattedDate from "#components/FormattedDate.tsx";
-import { getCurrentLocale, getRelativeLocaleUrl } from "@rimelight/i18n";
-import { useParams } from "@solidjs/router";
+import { getCurrentLocale, getLocaleUrl } from "@rimelight/i18n";
 import { getLegalPolicies } from "#utils/content.ts";
 
 export default function LegalIndexPage() {
-  const params = useParams<{ locale?: string }>();
-  const activeLocale = () => params.locale || getCurrentLocale() || "en";
   const legalPolicies = () =>
-    getLegalPolicies().filter((policy) => policy.locale === activeLocale());
+    getLegalPolicies().filter((policy) => policy.locale === getCurrentLocale());
 
   return (
     <AppLayout title="Legal" description="Legal policies and information">
@@ -18,7 +15,7 @@ export default function LegalIndexPage() {
           {legalPolicies().map((policy) => (
             <li class="border-b border-neutral-200 pb-4">
               <a
-                href={getRelativeLocaleUrl(`/legal/${policy.slug}/`)}
+                href={getLocaleUrl(`/legal/${policy.slug}/`)}
                 class="hover:text-primary transition-colors font-medium text-lg"
               >
                 <h2 class="text-xl font-semibold m-0">{policy.data.title}</h2>

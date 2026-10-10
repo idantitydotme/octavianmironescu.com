@@ -1,5 +1,5 @@
-import { getCurrentLocale, getRelativeLocaleUrl, getLocales } from "@rimelight/i18n";
-import { useLocation, useParams } from "@solidjs/router";
+import { getCurrentLocale, getLocaleUrl, getLocales } from "@rimelight/i18n";
+import { useLocation } from "@solidjs/router";
 
 const languageLabels: Record<string, string> = {
   en: "English",
@@ -71,10 +71,8 @@ const themeOptions: ThemeOption[] = [
 
 export default function Footer() {
   const today = new Date();
-  const params = useParams<{ locale?: string }>();
   const location = useLocation();
 
-  const activeLocale = () => params.locale || getCurrentLocale() || "en";
   const currentPath = () => location.pathname.replace(/^\/[^/]+/, "") || "/";
 
   const footerLinkColumns = (): FooterLinkColumn[] => [
@@ -83,7 +81,7 @@ export default function Footer() {
       links: [
         {
           label: "Branding",
-          href: getRelativeLocaleUrl("/branding", { locale: activeLocale() }),
+          href: getLocaleUrl("/branding"),
         },
       ],
     },
@@ -92,11 +90,11 @@ export default function Footer() {
       links: [
         {
           label: "Privacy Policy",
-          href: getRelativeLocaleUrl("/privacy-policy", { locale: activeLocale() }),
+          href: getLocaleUrl("/privacy-policy"),
         },
         {
           label: "Other Documents",
-          href: getRelativeLocaleUrl("/other-documents", { locale: activeLocale() }),
+          href: getLocaleUrl("/other-documents"),
         },
       ],
     },
@@ -106,7 +104,7 @@ export default function Footer() {
     getLocales().map((lang: string) => ({
       code: lang,
       label: languageLabels[lang] || lang,
-      href: getRelativeLocaleUrl(currentPath(), { locale: lang }),
+      href: getLocaleUrl(currentPath(), lang),
     }));
 
   return (
@@ -114,11 +112,7 @@ export default function Footer() {
       <div class="px-6 py-12 flex flex-col md:flex-row items-center md:items-start justify-between gap-10">
         {/* Left Section: Logo, Tagline, Copyright */}
         <div class="flex flex-col gap-3 items-center md:items-start text-center md:text-left order-last md:order-1">
-          <a
-            href={getRelativeLocaleUrl("/", { locale: activeLocale() })}
-            class="inline-flex items-center"
-            aria-label="Astro Home"
-          >
+          <a href={getLocaleUrl("/")} class="inline-flex items-center" aria-label="Astro Home">
             <svg
               class="h-8 w-auto text-white"
               viewBox="0 0 512 135"
@@ -199,7 +193,7 @@ export default function Footer() {
               {languageOptions().map((option) => (
                 <option
                   value={option.href}
-                  selected={option.code === activeLocale()}
+                  selected={option.code === getCurrentLocale()}
                   class="bg-black text-gray"
                 >
                   {option.label}

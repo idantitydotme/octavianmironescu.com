@@ -1,15 +1,12 @@
 import AppLayout from "#layouts/AppLayout.tsx";
 import FormattedDate from "#components/FormattedDate.tsx";
-import { getCurrentLocale, getRelativeLocaleUrl, t } from "@rimelight/i18n";
-import { useParams } from "@solidjs/router";
+import { getCurrentLocale, getLocaleUrl, t } from "@rimelight/i18n";
 import { getBlogPosts } from "#utils/content.ts";
 
 export default function BlogIndexPage() {
-  const params = useParams<{ locale?: string }>();
-  const activeLocale = () => params.locale || getCurrentLocale() || "en";
   const posts = () =>
     getBlogPosts()
-      .filter((post) => post.locale === activeLocale())
+      .filter((post) => post.locale === getCurrentLocale())
       .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 
   return (
@@ -23,7 +20,7 @@ export default function BlogIndexPage() {
             {posts().map((post, idx) => (
               <li class={idx === 0 ? "col-span-full text-center mb-4" : ""}>
                 <a
-                  href={getRelativeLocaleUrl(`/blog/${post.slug}/`)}
+                  href={getLocaleUrl(`/blog/${post.slug}/`)}
                   class="group block no-underline text-inherit"
                 >
                   {post.data.heroImage && (
