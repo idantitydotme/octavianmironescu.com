@@ -19,17 +19,16 @@ export default defineConfig({
       triggers.fetch({ pattern: "www.octavianmironescu.com/*", zone: "octavianmironescu.com" }),
     ],
     env: {
-      CONSTRUCTION_MODE: bindings.text("true"),
-      EMAIL_DOMAIN: bindings.text("octavianmironescu.com"),
-      CONTACT_OWNER_EMAIL: bindings.text("owner@octavianmironescu.com"),
-      DB: bindings.d1({
-        id: "5a1db703-9438-4880-9770-490548e07814",
+      ASSETS: bindings.assets(),
+      IMAGES: bindings.images(),
+      BLOB: bindings.r2({
+        name: "octavianmironescu-dot-com",
         dev: {
           remote: true,
         },
       }),
-      BLOB: bindings.r2({
-        name: "octavianmironescu-dot-com",
+      DB: bindings.d1({
+        id: "4d159ab6-83f8-4ca5-baa9-a4516b3086ce",
         dev: {
           remote: true,
         },
@@ -39,15 +38,17 @@ export default defineConfig({
           remote: true,
         },
       }),
-      MY_RATE_LIMITER: bindings.rateLimit({
+      RATE_LIMIT: bindings.rateLimit({
         namespace: "1001",
         simple: {
           limit: 100,
           period: 60,
         },
       }),
-      ASSETS: bindings.assets(),
       CONSTRUCTION_PASSPHRASE: bindings.secret(),
+      CONSTRUCTION_MODE: bindings.text("true"),
+      EMAIL_DOMAIN: bindings.text("octavianmironescu.com"),
+      CONTACT_OWNER_EMAIL: bindings.text("owner@octavianmironescu.com"),
     },
   },
 });
