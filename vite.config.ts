@@ -21,19 +21,13 @@ export default defineConfig({
     "*": "vp check --fix",
   },
   plugins: [
-    cloudflare({
-      viteEnvironment: {
-        name: "ssr",
-      },
-      experimental: {
-        newConfig: true,
-      },
-    }),
+    cloudflare(),
 
     solid({
       exclude: ["src/fetch.ts"],
       start: true,
       ssr: true,
+      serverFunctions: true,
     }),
 
     fileRoutes({ types: ".cloudflare/types/file-routes.d.ts" }),
@@ -69,20 +63,26 @@ export default defineConfig({
 
     security({
       domain: "octavianmironescu.com",
-      ratelimit: {
-        routes: ["/auth/sign-in", "/auth/sign-up", "/api/upload", "/api/chat", "/api/contact"],
-      },
     }),
 
-    auth({
-      roleGuards: {
-        "/admin": ["admin", "owner"],
-      },
-    }),
+    auth(),
 
     i18n(),
 
-    ui(),
+    ui({
+      logos: {
+        logomark: {
+          color: "https://cdn.octavianmironescu.com/logos/logomark_color.svg",
+          white: "https://cdn.octavianmironescu.com/logos/logomark_white.svg",
+          black: "https://cdn.octavianmironescu.com/logos/logomark_black.svg",
+        },
+        logotype: {
+          color: "https://cdn.octavianmironescu.com/logos/logotype_color.svg",
+          white: "https://cdn.octavianmironescu.com/logos/logotype_white.svg",
+          black: "https://cdn.octavianmironescu.com/logos/logotype_black.svg",
+        },
+      },
+    }),
 
     cms(),
   ],
