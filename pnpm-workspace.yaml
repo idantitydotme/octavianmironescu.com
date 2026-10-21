@@ -8,10 +8,16 @@ minimumReleaseAgeExclude:
 allowBuilds:
   esbuild: true
   workerd: true
+permissions:
+  "@solidjs/web":
+    skills: true
+  drizzle-kit:
+    skills: true
+  solid-js:
+    skills: true
 auditConfig:
   ignoreGhsas:
     - GHSA-vfj7-8cjw-p6xm
-# Vulnerability Fixes
+# Vulnerability Fixes & Toolchain Alignment
 overrides:
-  sharp: 0.35.5
-  source-map-js: 1.2.2
+  vite: npm:@voidzero-dev/vite-plus-core@1.3.0
