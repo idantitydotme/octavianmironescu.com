@@ -1,7 +1,10 @@
-import { Hono, type MiddlewareHandler } from "hono";
+import { Hono } from "hono";
 import { z } from "zod";
-import { env } from "cloudflare:workers";
-import { turnstile } from "@rimelight/security/middleware";
+
+export interface ContactEnv {
+  EMAIL: SendEmail;
+  CONTACT_OWNER_EMAIL: string;
+}
 
 const schema = z.object({
   name: z.string().trim().min(1).max(96),
@@ -10,20 +13,20 @@ const schema = z.object({
   message: z.string().trim().min(10).max(5192),
 });
 
-export default new Hono().post("/", turnstile() as MiddlewareHandler, async (c) => {
+export default new Hono<{ Bindings: ContactEnv }>().post("/", async (c) => {
   const { success, data, error } = schema.safeParse(await c.req.parseBody());
   if (!success) return c.json({ success: false as const, error: error.issues[0]?.message }, 400);
 
   const { name, email, subject, message } = data;
-  const sent = await env.EMAIL.send({
-    to: env.CONTACT_OWNER_EMAIL,
-    from: `noreply@${env.EMAIL_DOMAIN}`,
+  const sent = await c.env.EMAIL.send({
+    to: c.env.CONTACT_OWNER_EMAIL,
+    from: `noreply@${c.env.CONTACT_OWNER_EMAIL.split("@")[1]}`,
     replyTo: { email, name },
     subject: `[Contact] ${subject || `Message from ${name}`}`.replace(/[\r\n]+/g, " "),
     text: `From: ${name} <${email}>\n\n${message}`,
   }).then(
     () => true,
-    (err) => (console.error("[Contact] Failed to send message:", err), false),
+    (err: unknown) => (console.error("[Contact] Failed to send message:", err), false),
   );
 
   if (!sent) return c.json({ success: false as const, error: "Could not send your message." }, 502);
