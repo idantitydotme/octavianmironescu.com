@@ -1,9 +1,16 @@
 import { type Component } from "solid-js";
 import { type JSX, useHead } from "@solidjs/web";
 import { createSeoHead } from "@rimelight/seo/head";
-import Header from "#components/Header.tsx";
-import Footer from "#components/Footer.tsx";
-import { RLMain, RLScrollToTop, RLToaster } from "@rimelight/ui";
+import AppHeader from "#components/app/AppHeader";
+import AppFooter from "#components/app/AppFooter";
+import {
+  RLMain,
+  RLScrollToTop,
+  RLShortcuts,
+  RLToaster,
+  RLRouteAnnouncer,
+  RLLayoutGrid,
+} from "@rimelight/ui";
 
 export interface AppLayoutProps {
   title?: string | undefined;
@@ -17,33 +24,28 @@ export interface AppLayoutProps {
 }
 
 export const AppLayout: Component<AppLayoutProps> = (props) => {
-  useHead(
-    () =>
-      createSeoHead({
-        title: props.title,
-        description: props.description,
-        noindex: props.noindex,
-        robots: props.robots,
-        ogImage: props.ogImageSrc
-          ? { src: props.ogImageSrc, alt: props.ogImageAlt ?? "" }
-          : undefined,
-      }).tags,
+  useHead(() =>
+    createSeoHead({
+      title: props.title,
+      description: props.description,
+      noindex: props.noindex,
+      robots: props.robots,
+      ogImage: props.ogImageSrc
+        ? { src: props.ogImageSrc, alt: props.ogImageAlt ?? "" }
+        : undefined,
+    }),
   );
   return (
-    <>
-      <div class="isolate flex flex-col min-h-screen">
-        <Header />
-
-        <RLMain id="main-content" class="flex-1">
-          {props.children}
-        </RLMain>
-
-        <Footer />
-
-        <RLScrollToTop showProgress={true} />
-        <RLToaster />
-      </div>
-    </>
+    <div class="isolate flex flex-col min-h-screen">
+      <AppHeader />
+      <RLMain>{props.children}</RLMain>
+      <AppFooter />
+      <RLScrollToTop />
+      <RLShortcuts />
+      <RLToaster />
+      <RLRouteAnnouncer />
+      <RLLayoutGrid />
+    </div>
   );
 };
 
