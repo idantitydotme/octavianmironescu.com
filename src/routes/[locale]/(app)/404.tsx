@@ -1,9 +1,19 @@
-import AppLayout from "#layouts/AppLayout.tsx";
+import { useHead } from "@solidjs/web";
+import { createSeoHead } from "@rimelight/seo/head";
 import AppError from "#components/app/AppError.tsx";
 
 export default function ErrorPage404() {
-  return (
-    <AppLayout title="404 - Not Found" description="Page has not been found." noindex is404>
+  useHead(() =>
+    createSeoHead({
+      title: "404 - Not Found",
+      description: "Page has not been found.",
+      noindex: true,
+      is404: true,
+    }),
+  );
+
+  return (<>
+
       <AppError
         code={404}
         title="Page Not Found"
@@ -18,6 +28,7 @@ export default function ErrorPage404() {
           },
         ]}
       />
-    </AppLayout>
+    
+</>
   );
 }

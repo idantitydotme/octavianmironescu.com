@@ -1,4 +1,5 @@
-import AppLayout from "#layouts/AppLayout.tsx";
+import { useHead } from "@solidjs/web";
+import { createSeoHead } from "@rimelight/seo/head";
 import AppError from "#components/app/AppError.tsx";
 
 interface ErrorPage500Props {
@@ -6,12 +7,16 @@ interface ErrorPage500Props {
 }
 
 export default function ErrorPage500(props: ErrorPage500Props) {
-  return (
-    <AppLayout
-      title="500 - Internal Server Error"
-      description="An unexpected error occurred on the server."
-      noindex
-    >
+  useHead(() =>
+    createSeoHead({
+      title: "500 - Internal Server Error",
+      description: "An unexpected error occurred on the server.",
+      noindex: true,
+    }),
+  );
+
+  return (<>
+
       <AppError
         code={500}
         title="Internal Server Error"
@@ -30,6 +35,7 @@ export default function ErrorPage500(props: ErrorPage500Props) {
           },
         ]}
       />
-    </AppLayout>
+    
+</>
   );
 }

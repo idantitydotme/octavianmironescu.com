@@ -1,14 +1,23 @@
-import AppLayout from "#layouts/AppLayout.tsx";
+import { useHead } from "@solidjs/web";
+import { createSeoHead } from "@rimelight/seo/head";
 
 export default function OtherDocumentsPage() {
-  return (
-    <AppLayout title="Other Documents" description="Additional legal documents and resources">
+  useHead(() =>
+    createSeoHead({
+      title: "Other Documents",
+      description: "Additional legal documents and resources",
+    }),
+  );
+
+  return (<>
+
       <div class="max-w-4xl mx-auto px-4 py-8 sm:py-12">
         <h1 class="text-3xl sm:text-4xl font-bold mb-4">Other Documents</h1>
         <p class="text-neutral-400">
           Additional documentation and legal resources will be published here.
         </p>
       </div>
-    </AppLayout>
+    
+</>
   );
 }

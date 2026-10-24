@@ -1,19 +1,23 @@
+import { useHead } from "@solidjs/web";
+import { createSeoHead } from "@rimelight/seo/head";
 import { type Component, Show } from "solid-js";
 import { useSearchParams } from "@solidjs/router";
-import AppLayout from "#layouts/AppLayout.tsx";
 import { RLCard, RLFormField, RLInput, RLButton, RLCheckbox, RLLogo } from "@rimelight/ui";
 
 export const ConstructionPage: Component = () => {
   const [searchParams] = useSearchParams();
   const redirect = () => (searchParams["redirect"] as string) || "/";
   const isError = () => searchParams["error"] === "invalid";
+  useHead(() =>
+    createSeoHead({
+      title: "Under Construction",
+      description: "This website is under construction.",
+      noindex: true,
+    }),
+  );
 
-  return (
-    <AppLayout
-      title="Under Construction"
-      description="This website is under construction."
-      noindex={true}
-    >
+  return (<>
+
       <div class="flex min-h-screen flex-col items-center justify-center px-4 py-12">
         <div class="w-full max-w-md space-y-6 text-center">
           <div class="flex flex-col items-center gap-4">
@@ -67,7 +71,8 @@ export const ConstructionPage: Component = () => {
           </RLCard>
         </div>
       </div>
-    </AppLayout>
+    
+</>
   );
 };
 

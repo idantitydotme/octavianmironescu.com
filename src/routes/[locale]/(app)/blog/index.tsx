@@ -1,5 +1,5 @@
-import AppLayout from "#layouts/AppLayout.tsx";
-import FormattedDate from "#components/FormattedDate.tsx";
+import { useHead } from "@solidjs/web";
+import { createSeoHead } from "@rimelight/seo/head";
 import { getCurrentLocale, getLocaleUrl, t } from "@rimelight/i18n";
 import { getBlogPosts } from "#utils/content.ts";
 
@@ -8,12 +8,15 @@ export default function BlogIndexPage() {
     getBlogPosts()
       .filter((post) => post.locale === getCurrentLocale())
       .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+  useHead(() =>
+    createSeoHead({
+      title: t("blog.title") || "Octavian Mironescu",
+      description: t("blog.description") || "Personal website of Octavian Mironescu",
+    }),
+  );
 
-  return (
-    <AppLayout
-      title={t("blog.title") || "Octavian Mironescu"}
-      description={t("blog.description") || "Personal website of Octavian Mironescu"}
-    >
+  return (<>
+
       <div class="max-w-4xl mx-auto px-4 py-8 sm:py-12">
         <section>
           <ul class="grid grid-cols-1 md:grid-cols-2 gap-8 list-none p-0 m-0">
@@ -38,7 +41,7 @@ export default function BlogIndexPage() {
                     {post.data.title}
                   </h3>
                   <p class="text-sm text-neutral-500 m-0 mt-1">
-                    <FormattedDate date={post.data.pubDate} />
+                    <time>{new Date(post.data.pubDate).toLocaleDateString()}</time>
                   </p>
                 </a>
               </li>
@@ -46,6 +49,7 @@ export default function BlogIndexPage() {
           </ul>
         </section>
       </div>
-    </AppLayout>
+    
+</>
   );
 }

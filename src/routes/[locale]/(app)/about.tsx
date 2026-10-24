@@ -1,11 +1,18 @@
-import AppLayout from "#layouts/AppLayout.tsx";
+import { useHead } from "@solidjs/web";
+import { createSeoHead } from "@rimelight/seo/head";
 import { getLocaleUrl } from "@rimelight/i18n";
 
 export default function AboutPage() {
   const aboutURL = getLocaleUrl("/about");
+  useHead(() =>
+    createSeoHead({
+      title: "About",
+      description: "About this website",
+    }),
+  );
 
-  return (
-    <AppLayout title="About" description="About this website">
+  return (<>
+
       <div class="max-w-4xl mx-auto px-4 py-8 sm:py-12 space-y-4">
         <div class="flex gap-4 mb-4">
           <a href="/get-started/" class="hover:text-primary underline">
@@ -69,6 +76,7 @@ export default function AboutPage() {
           magna.
         </p>
       </div>
-    </AppLayout>
+    
+</>
   );
 }
