@@ -15,8 +15,8 @@ export default function ErrorPage500(props: ErrorPage500Props) {
     }),
   );
 
-  return (<>
-
+  return (
+    <>
       <AppError
         code={500}
         title="Internal Server Error"
@@ -35,7 +35,6 @@ export default function ErrorPage500(props: ErrorPage500Props) {
           },
         ]}
       />
-    
-</>
+    </>
   );
 }

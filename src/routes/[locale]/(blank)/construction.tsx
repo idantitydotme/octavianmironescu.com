@@ -16,8 +16,8 @@ export const ConstructionPage: Component = () => {
     }),
   );
 
-  return (<>
-
+  return (
+    <>
       <div class="flex min-h-screen flex-col items-center justify-center px-4 py-12">
         <div class="w-full max-w-md space-y-6 text-center">
           <div class="flex flex-col items-center gap-4">
@@ -71,8 +71,7 @@ export const ConstructionPage: Component = () => {
           </RLCard>
         </div>
       </div>
-    
-</>
+    </>
   );
 };
 

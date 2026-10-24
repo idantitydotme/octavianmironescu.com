@@ -15,8 +15,8 @@ export default function BlogIndexPage() {
     }),
   );
 
-  return (<>
-
+  return (
+    <>
       <div class="max-w-4xl mx-auto px-4 py-8 sm:py-12">
         <section>
           <ul class="grid grid-cols-1 md:grid-cols-2 gap-8 list-none p-0 m-0">
@@ -49,7 +49,6 @@ export default function BlogIndexPage() {
           </ul>
         </section>
       </div>
-    
-</>
+    </>
   );
 }

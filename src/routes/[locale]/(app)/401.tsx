@@ -11,8 +11,8 @@ export default function ErrorPage401() {
     }),
   );
 
-  return (<>
-
+  return (
+    <>
       <AppError
         code={401}
         title="Authentication Required"
@@ -27,7 +27,6 @@ export default function ErrorPage401() {
           },
         ]}
       />
-    
-</>
+    </>
   );
 }

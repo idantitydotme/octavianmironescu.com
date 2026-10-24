@@ -11,8 +11,8 @@ export default function ErrorPage403() {
     }),
   );
 
-  return (<>
-
+  return (
+    <>
       <AppError
         code={403}
         title="Access Denied"
@@ -27,7 +27,6 @@ export default function ErrorPage403() {
           },
         ]}
       />
-    
-</>
+    </>
   );
 }

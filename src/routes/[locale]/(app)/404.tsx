@@ -12,8 +12,8 @@ export default function ErrorPage404() {
     }),
   );
 
-  return (<>
-
+  return (
+    <>
       <AppError
         code={404}
         title="Page Not Found"
@@ -28,7 +28,6 @@ export default function ErrorPage404() {
           },
         ]}
       />
-    
-</>
+    </>
   );
 }

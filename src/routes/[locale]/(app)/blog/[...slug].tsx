@@ -45,7 +45,8 @@ export default function BlogPostPage() {
                 <time>{new Date(post()!.data.pubDate).toLocaleDateString()}</time>
                 {post()!.data.updatedDate && (
                   <span class="italic">
-                    (Updated: <time>{new Date(post()!.data.updatedDate!).toLocaleDateString()}</time>)
+                    (Updated:{" "}
+                    <time>{new Date(post()!.data.updatedDate!).toLocaleDateString()}</time>)
                   </span>
                 )}
               </div>
