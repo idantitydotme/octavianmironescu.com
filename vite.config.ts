@@ -48,6 +48,11 @@ export default defineConfig({
         ro: "ro-RO",
         pt: "pt-BR",
       },
+      og: {
+        routes: {
+          "*/blog/*": "./src/components/og/BlogOgCard.tsx",
+        },
+      },
       privatePathPrefixes: [
         "/dashboard",
         "/admin",
