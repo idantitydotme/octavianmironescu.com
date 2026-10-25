@@ -43,11 +43,6 @@ export default defineConfig({
         colors: { themeColor: "#ffffff", backgroundColor: "#ffffff" },
       },
       titleTemplate: "%s | Octavian Mironescu",
-      locales: {
-        en: "en-US",
-        ro: "ro-RO",
-        pt: "pt-BR",
-      },
       og: {
         routes: {
           "*/blog/*": "./src/components/og/BlogOgCard.tsx",
