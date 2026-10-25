@@ -1,19 +1,13 @@
-import { t, getLocaleUrl } from "@rimelight/i18n";
+import { t } from "@rimelight/i18n";
 import { RLButton, RLHeader, RLNavigationMenu } from "@rimelight/ui";
 
 export default function Header() {
-  const homeURL = getLocaleUrl("/");
-  const blogURL = getLocaleUrl("/blog");
-  const resumeURL = getLocaleUrl("/resume");
-  const legalURL = getLocaleUrl("/legal");
-  const aboutURL = getLocaleUrl("/about");
-
   const items = [
-    { label: t("nav.home"), href: homeURL },
-    { label: t("nav.blog"), description: "Blog stuff", href: blogURL },
-    { label: t("nav.resume"), description: "Information about myself", href: resumeURL },
-    { label: t("nav.legal"), description: "Legal Stuff", href: legalURL },
-    { label: t("nav.about"), description: "Information about the website", href: aboutURL },
+    { label: t("nav.home"), href: "/" },
+    { label: t("nav.blog"), description: "Blog stuff", href: "/blog" },
+    { label: t("nav.resume"), description: "Information about myself", href: "/resume" },
+    { label: t("nav.legal"), description: "Legal Stuff", href: "/legal" },
+    { label: t("nav.about"), description: "Information about the website", href: "/about" },
   ];
 
   return (

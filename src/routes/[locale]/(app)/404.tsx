@@ -1,6 +1,6 @@
 import { useHead } from "@solidjs/web";
 import { createSeoHead } from "@rimelight/seo/head";
-import AppError from "#components/app/AppError.tsx";
+import { RLError } from "@rimelight/ui";
 
 export default function ErrorPage404() {
   useHead(() =>
@@ -12,22 +12,5 @@ export default function ErrorPage404() {
     }),
   );
 
-  return (
-    <>
-      <AppError
-        code={404}
-        title="Page Not Found"
-        description="Page has not been found."
-        actions={[
-          {
-            label: "Go to Home Page",
-            href: "/",
-            variant: "solid",
-            color: "primary",
-            icon: "i-lucide-home",
-          },
-        ]}
-      />
-    </>
-  );
+  return <RLError status={404} />;
 }
