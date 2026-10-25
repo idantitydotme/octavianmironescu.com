@@ -30,13 +30,161 @@
           "label": "Subiect (opțional)"
         }
       }
+    },
+    "resume": {
+      "meta": {
+        "title": "CV",
+        "description": "CV-ul lui Octavian Mironescu, dezvoltator software Java și web."
+      },
+      "hero": {
+        "title": "Salut! Sunt Octavian Mironescu",
+        "description": "Sunt dezvoltator software Java și web.",
+        "hire": "Angajează-mă"
+      },
+      "sidebar": {
+        "name": "Mironescu Octavian",
+        "title": "Dezvoltator software",
+        "aria": "Profil"
+      },
+      "about": {
+        "heading": "Despre mine",
+        "gender": {
+          "label": "Gen",
+          "value": "Masculin"
+        },
+        "pronouns": {
+          "label": "Pronume",
+          "value": "El"
+        },
+        "nationality": {
+          "label": "Naționalitate",
+          "value": "Română"
+        },
+        "age": {
+          "label": "Vârstă"
+        },
+        "location": {
+          "label": "Locație",
+          "value": "București, România"
+        }
+      },
+      "languages": {
+        "heading": "Limbi",
+        "english": "Engleză",
+        "romanian": "Română",
+        "german": "Germană",
+        "fluent": "Fluent",
+        "basic": "Începător"
+      },
+      "skills": {
+        "heading": "Competențe",
+        "java": {
+          "title": "Dezvoltator software Java",
+          "description": "Proiectez, construiesc și întrețin aplicații enterprise și servicii backend folosind limbajul Java și vastul său ecosistem."
+        },
+        "web": {
+          "title": "Dezvoltator software web",
+          "description": "Construiesc aplicații web rapide, responsive și sigure folosind arhitecturi moderne, integrarea framework-urilor și tehnici de optimizare a performanței."
+        },
+        "design": {
+          "title": "Filozofie de design",
+          "description": "Mă concentrez pe experiențe accesibile, atenție la detaliile interfeței, feedback interactiv fluid și sisteme modulare consecvente vizual."
+        }
+      },
+      "tech": {
+        "heading": "Tehnologii și unelte",
+        "languages": "Limbaje și framework-uri",
+        "environment": "Mediu de dezvoltare",
+        "build": "Build și pachete",
+        "deployment": "Deployment"
+      },
+      "experience": {
+        "heading": "Experiență",
+        "summary": "Rezumat",
+        "responsibilities": "Responsabilități",
+        "items": [
+          {
+            "company": "Property Pass",
+            "period": "Iunie 2022 - Noiembrie 2022",
+            "tags": ["Kotlin", "Java", "Spring Boot", "MongoDB", "GraphQL"],
+            "role": "Programator junior",
+            "location": "Utrecht, Țările de Jos - Remote",
+            "summary": "Am dezvoltat, construit și întreținut aplicația din spatele site-ului companiei, care gestiona pașapoartele imobiliare pentru proprietarii de imobile comerciale.",
+            "responsibilities": [
+              "Dezvoltarea unei aplicații Spring Boot scrise în Kotlin, din domeniul comerțului imobiliar.",
+              "Crearea și gestionarea datelor într-un cluster MongoDB.",
+              "Scrierea de pipeline-uri de agregare MongoDB pentru analize destinate stakeholderilor.",
+              "Refactorizarea documentației proiectului."
+            ]
+          },
+          {
+            "company": "CoruScript",
+            "period": "Mai 2023 - Ianuarie 2024",
+            "tags": ["Java", "Spring Boot", "Amazon Web Services", "PostgreSQL"],
+            "role": "Programator junior",
+            "location": "București, România - La birou/Remote",
+            "summary": "Am dezvoltat partea de backend a site-ului unei platforme care oferă servicii de construire a aplicațiilor în funcție de nevoile clienților.",
+            "responsibilities": [
+              "Am dezvoltat, testat și întreținut aplicația site-ului companiei, construită cu Java și Spring.",
+              "Am întreținut și scris pipeline-uri pentru arhitectura cloud folosind AWS."
+            ]
+          },
+          {
+            "role": "Freelancing",
+            "period": "Februarie 2024 - Prezent",
+            "location": "București, România - La birou/Remote",
+            "summary": "Am scris, testat și întreținut software și site-uri pentru diverși clienți, pe bază de contract."
+          }
+        ]
+      },
+      "education": {
+        "heading": "Educație",
+        "items": [
+          {
+            "degree": "Licență în Informatică",
+            "school": "OVID - Universitatea Ovidius Constanța",
+            "period": "2018 - 2021"
+          },
+          {
+            "degree": "Master în Informatică",
+            "school": "OVID - Universitatea Ovidius Constanța",
+            "period": "2021 - 2023"
+          }
+        ]
+      },
+      "projects": {
+        "heading": "Proiecte",
+        "view": "Vezi",
+        "items": [
+          {
+            "name": "Bot de automatizare Discord",
+            "role": "Dezvoltator și mentenanță",
+            "period": "2024",
+            "tags": ["Java", "Discord Developer Portal"]
+          }
+        ]
+      },
+      "certifications": {
+        "heading": "Certificări",
+        "id": "ID",
+        "items": []
+      }
+    },
+    "legal": {
+      "meta": {
+        "title": "Documente legale",
+        "description": "Politici și acorduri."
+      },
+      "empty": "Încă nu există documente legale."
     }
   },
   "nav": {
     "home": "Acasă",
     "blog": "Blog",
     "legal": "Informații Legale",
-    "about": "Despre"
+    "about": "Despre",
+    "resume": "CV",
+    "contact": "Contact"
   },
   "legal": {
     "last-updated-on": "Ultima actualizare pe"

@@ -70,6 +70,10 @@ export default defineConfig({
     i18n(),
 
     ui({
+      colors: {
+        // Tailwind green-600 (#16a34a) in OKLCH chroma/hue.
+        primary: [0.194, 149],
+      },
       logos: {
         logomark: {
           color: "https://cdn.octavianmironescu.com/logos/logomark_color.svg",

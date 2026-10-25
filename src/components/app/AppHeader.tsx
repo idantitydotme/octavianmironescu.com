@@ -8,6 +8,7 @@ export default function Header() {
     { label: t("nav.resume"), description: "Information about myself", href: "/resume" },
     { label: t("nav.legal"), description: "Legal Stuff", href: "/legal" },
     { label: t("nav.about"), description: "Information about the website", href: "/about" },
+    { label: t("nav.contact"), description: "Get in touch", href: "/contact" },
   ];
 
   return (

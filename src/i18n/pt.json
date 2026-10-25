@@ -30,13 +30,161 @@
           "label": "Assunto (opcional)"
         }
       }
+    },
+    "resume": {
+      "meta": {
+        "title": "Currículo",
+        "description": "Currículo de Octavian Mironescu, desenvolvedor de software Java e web."
+      },
+      "hero": {
+        "title": "Olá! Eu sou Octavian Mironescu",
+        "description": "Sou desenvolvedor de software Java e web.",
+        "hire": "Contrate-me"
+      },
+      "sidebar": {
+        "name": "Mironescu Octavian",
+        "title": "Desenvolvedor de software",
+        "aria": "Perfil"
+      },
+      "about": {
+        "heading": "Sobre mim",
+        "gender": {
+          "label": "Gênero",
+          "value": "Masculino"
+        },
+        "pronouns": {
+          "label": "Pronomes",
+          "value": "Ele/Dele"
+        },
+        "nationality": {
+          "label": "Nacionalidade",
+          "value": "Romeno"
+        },
+        "age": {
+          "label": "Idade"
+        },
+        "location": {
+          "label": "Localização",
+          "value": "Bucareste, Romênia"
+        }
+      },
+      "languages": {
+        "heading": "Idiomas",
+        "english": "Inglês",
+        "romanian": "Romeno",
+        "german": "Alemão",
+        "fluent": "Fluente",
+        "basic": "Básico"
+      },
+      "skills": {
+        "heading": "Habilidades",
+        "java": {
+          "title": "Desenvolvedor de software Java",
+          "description": "Projeto, construo e mantenho aplicações corporativas e serviços de backend usando a linguagem Java e seu vasto ecossistema."
+        },
+        "web": {
+          "title": "Desenvolvedor de software web",
+          "description": "Construo aplicações web rápidas, responsivas e seguras usando arquiteturas modernas, integração de frameworks e técnicas de otimização de desempenho."
+        },
+        "design": {
+          "title": "Filosofias de design",
+          "description": "Foco em experiências acessíveis, detalhes de interface, feedback interativo fluido e sistemas modulares visualmente consistentes."
+        }
+      },
+      "tech": {
+        "heading": "Tecnologias e ferramentas",
+        "languages": "Linguagens e frameworks",
+        "environment": "Ambiente de desenvolvimento",
+        "build": "Build e pacotes",
+        "deployment": "Deploy"
+      },
+      "experience": {
+        "heading": "Experiência",
+        "summary": "Resumo",
+        "responsibilities": "Responsabilidades",
+        "items": [
+          {
+            "company": "Property Pass",
+            "period": "Junho 2022 - Novembro 2022",
+            "tags": ["Kotlin", "Java", "Spring Boot", "MongoDB", "GraphQL"],
+            "role": "Programador júnior",
+            "location": "Utrecht, Países Baixos - Remoto",
+            "summary": "Desenvolvi, construí e mantive a aplicação por trás do site da empresa, que gerenciava passaportes imobiliários para proprietários de imóveis comerciais.",
+            "responsibilities": [
+              "Desenvolvimento de uma aplicação Spring Boot escrita em Kotlin, voltada ao comércio imobiliário.",
+              "Criação e gestão de dados em um cluster MongoDB.",
+              "Escrita de pipelines de agregação no MongoDB para análises destinadas aos stakeholders.",
+              "Refatoração da documentação do projeto."
+            ]
+          },
+          {
+            "company": "CoruScript",
+            "period": "Maio 2023 - Janeiro 2024",
+            "tags": ["Java", "Spring Boot", "Amazon Web Services", "PostgreSQL"],
+            "role": "Programador júnior",
+            "location": "Bucareste, Romênia - Presencial/Remoto",
+            "summary": "Desenvolvi a parte de backend do site de uma plataforma que oferece serviços de construção de aplicações conforme as necessidades dos clientes.",
+            "responsibilities": [
+              "Desenvolvi, testei e mantive a aplicação do site da empresa, construída com Java e Spring.",
+              "Mantive e escrevi pipelines para a arquitetura em nuvem usando AWS."
+            ]
+          },
+          {
+            "role": "Freelancer",
+            "period": "Fevereiro 2024 - Presente",
+            "location": "Bucareste, Romênia - Presencial/Remoto",
+            "summary": "Escrevi, testei e mantive software e sites para diversos clientes sob contrato."
+          }
+        ]
+      },
+      "education": {
+        "heading": "Educação",
+        "items": [
+          {
+            "degree": "Bacharelado em Ciência da Computação",
+            "school": "OVID - Universitatea Ovidius Constanța",
+            "period": "2018 - 2021"
+          },
+          {
+            "degree": "Mestrado em Ciência da Computação",
+            "school": "OVID - Universitatea Ovidius Constanța",
+            "period": "2021 - 2023"
+          }
+        ]
+      },
+      "projects": {
+        "heading": "Projetos",
+        "view": "Ver",
+        "items": [
+          {
+            "name": "Bot de automação para Discord",
+            "role": "Desenvolvedor e mantenedor",
+            "period": "2024",
+            "tags": ["Java", "Discord Developer Portal"]
+          }
+        ]
+      },
+      "certifications": {
+        "heading": "Certificações",
+        "id": "ID",
+        "items": []
+      }
+    },
+    "legal": {
+      "meta": {
+        "title": "Documentos legais",
+        "description": "Políticas e acordos."
+      },
+      "empty": "Ainda não há documentos legais."
     }
   },
   "nav": {
     "home": "Início",
     "blog": "Blog",
     "legal": "Legal",
-    "about": "Sobre"
+    "about": "Sobre",
+    "resume": "Currículo",
+    "contact": "Contato"
   },
   "legal": {
     "last-updated-on": "Última atualização em"

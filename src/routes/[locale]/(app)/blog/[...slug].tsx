@@ -1,64 +1,61 @@
-import { useParams } from "@solidjs/router";
+import { type Component, Show, createMemo } from "solid-js";
+import { useParams, useSearchParams } from "@solidjs/router";
 import { useHead } from "@solidjs/web";
 import { createSeoHead } from "@rimelight/seo/head";
-import { getBlogPosts } from "#utils/content.ts";
-import ErrorPage404 from "../404.tsx";
+import { PageRenderer, content, type PublicEntry } from "@rimelight/cms/solid";
+import { RLDate } from "@rimelight/ui";
+import { t, getCurrentLocale } from "@rimelight/i18n";
 
-export default function BlogPostPage() {
-  const params = useParams<{ locale?: string; slug?: string }>();
-  const post = () =>
-    getBlogPosts().find((p) => p.locale === params.locale && p.slug === params.slug);
+/**
+ * A blog post, read from the CMS delivery API (`/api/content/collections/blog/:slug`). Mentions
+ * arrive already resolved (colour + link), so PageRenderer needs no extra setup. `?preview=`
+ * (from the dashboard's "Open draft preview") shows the draft instead of the published version.
+ */
+export const BlogPostPage: Component = () => {
+  const params = useParams<{ locale: string; slug?: string }>();
+  const [search] = useSearchParams<{ preview?: string }>();
+  const activeLocale = () => getCurrentLocale();
 
-  useHead(() =>
-    createSeoHead({
-      title: post()?.data.title,
-      description: post()?.data.description,
-    }),
+  const post = createMemo<PublicEntry | null>(
+    async () => {
+      const slug = params.slug?.replace(/\/+$/, "");
+      if (!slug) return null;
+      return content.entry("blog", slug, search.preview);
+    },
+    { loadingValue: null },
   );
+
+  const title = () => {
+    const p = post();
+    return p ? t.localize(p.title) || "Blog Post" : "Blog Post";
+  };
+  const description = () => {
+    const p = post();
+    return p ? t.localize(p.description ?? {}) || p.properties?.["excerpt"] || "" : "";
+  };
+
+  useHead(() => createSeoHead({ title: title(), description: description() }));
 
   return (
-    <>
-      {post() ? (
-        <div class="max-w-4xl mx-auto px-4 py-8 sm:py-12">
-          <article>
-            {post()!.data.heroImage && (
-              <div class="mb-8 rounded-2xl overflow-hidden shadow-sm">
-                <img
-                  width={1020}
-                  height={510}
-                  src={post()!.data.heroImage}
-                  alt=""
-                  class="w-full h-auto object-cover"
-                />
-              </div>
-            )}
-            <header class="border-b border-neutral-200 pb-8 mb-8 text-center">
-              <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight leading-tight mb-4">
-                {post()!.data.title}
-              </h1>
-              {post()!.data.description && (
-                <p class="text-lg text-neutral-500 max-w-2xl mx-auto mb-4">
-                  {post()!.data.description}
-                </p>
-              )}
-              <div class="flex items-center justify-center gap-4 text-sm text-neutral-500">
-                <time>{new Date(post()!.data.pubDate).toLocaleDateString()}</time>
-                {post()!.data.updatedDate && (
-                  <span class="italic">
-                    (Updated:{" "}
-                    <time>{new Date(post()!.data.updatedDate!).toLocaleDateString()}</time>)
-                  </span>
-                )}
-              </div>
-            </header>
-            <div class="prose max-w-none mx-auto leading-relaxed whitespace-pre-wrap">
-              {post()!.body}
-            </div>
-          </article>
-        </div>
-      ) : (
-        <ErrorPage404 />
-      )}
-    </>
+    <Show
+      when={post()}
+      fallback={<div class="p-16 text-center text-neutral-400">Loading post...</div>}
+    >
+      <article class="max-w-4xl mx-auto px-4 py-16">
+        <header class="mb-12">
+          <div class="text-sm text-primary-400 mb-2">
+            <RLDate date={post()?.publishedAt || post()?.updatedAt || new Date()} />
+          </div>
+          <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight text-white mb-4">
+            {title()}
+          </h1>
+          <p class="text-xl text-neutral-400 leading-relaxed">{description()}</p>
+        </header>
+
+        <PageRenderer blocks={post()?.blocks ?? []} locale={activeLocale()} />
+      </article>
+    </Show>
   );
-}
+};
+
+export default BlogPostPage;
