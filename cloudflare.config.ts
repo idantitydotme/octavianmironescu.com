@@ -3,16 +3,16 @@ import { bindings, defineConfig, triggers } from "cf/config";
 export default defineConfig({
   worker: {
     name: "octavianmironescu-dot-com",
-    compatibilityDate: "2026-08-27",
+    compatibilityDate: "2026-10-01",
     entrypoint: "./src/fetch.ts",
-    cache: {
-      enabled: true,
-    },
     observability: {
       enabled: true,
       traces: {
         enabled: true,
       },
+    },
+    cache: {
+      enabled: true,
     },
     triggers: [
       triggers.fetch({ pattern: "octavianmironescu.com/*", zone: "octavianmironescu.com" }),
@@ -23,21 +23,11 @@ export default defineConfig({
       IMAGES: bindings.images(),
       BLOB: bindings.r2({
         name: "octavianmironescu-dot-com",
-        dev: {
-          remote: true,
-        },
       }),
       DB: bindings.d1({
         id: "4d159ab6-83f8-4ca5-baa9-a4516b3086ce",
-        dev: {
-          remote: true,
-        },
       }),
-      EMAIL: bindings.sendEmail({
-        dev: {
-          remote: true,
-        },
-      }),
+      EMAIL: bindings.sendEmail(),
       RATE_LIMIT: bindings.rateLimit({
         namespace: "1001",
         simple: {
