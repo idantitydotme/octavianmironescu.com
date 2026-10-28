@@ -66,6 +66,8 @@ Set these in `.dev.vars` for local development, and as Worker secrets in product
 | ------------------------- | ----------------------------------------------------------------- |
 | `CONSTRUCTION_MODE`       | Set to `true` to hold the site behind the construction passphrase |
 | `CONSTRUCTION_PASSPHRASE` | Passphrase that unlocks a site in construction mode               |
+| `TURNSTILE_SITE_KEY`      | Cloudflare Turnstile site key (client-side widget)                |
+| `TURNSTILE_SECRET_KEY`    | Cloudflare Turnstile secret key (server-side verification)        |
 
 ## Cloudflare Bindings
 

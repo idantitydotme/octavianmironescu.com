@@ -1,4 +1,5 @@
 import { getCurrentLocale, getLocaleUrl, getLocales } from "@rimelight/i18n";
+import { RLLogo } from "@rimelight/ui";
 import { useLocation } from "@solidjs/router";
 import { t } from "@rimelight/i18n";
 
@@ -135,27 +136,7 @@ export default function Footer() {
             class="inline-flex items-center"
             aria-label={t("app.footer.home-aria")}
           >
-            <svg
-              class="h-8 w-auto text-white"
-              viewBox="0 0 512 135"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <defs>
-                <linearGradient id="astro-gradient" x1="0%" x2="116.842%" y1="91.269%" y2="41.115%">
-                  <stop offset="0%" stop-color="#d83333" />
-                  <stop offset="100%" stop-color="#f041ff" />
-                </linearGradient>
-              </defs>
-              <path
-                fill="currentColor"
-                d="M34.698 114.618c-6.08-5.558-7.854-17.234-5.321-25.693c4.391 5.333 10.476 7.023 16.78 7.976c9.73 1.472 19.286.922 28.325-3.526c1.034-.509 1.99-1.187 3.12-1.872c.847 2.46 1.068 4.944.772 7.473c-.72 6.158-3.785 10.915-8.659 14.52c-1.949 1.442-4.01 2.731-6.024 4.092c-6.184 4.178-7.857 9.08-5.533 16.208c.055.174.105.348.23.772c-3.158-1.413-5.464-3.47-7.221-6.176c-1.856-2.855-2.74-6.014-2.786-9.43c-.023-1.663-.023-3.342-.247-4.98c-.546-3.997-2.422-5.787-5.957-5.89c-3.628-.106-6.498 2.136-7.259 5.669c-.058.27-.142.538-.226.853z"
-              />
-              <path
-                fill="url(#astro-gradient)"
-                d="M34.698 114.618c-6.08-5.558-7.854-17.234-5.321-25.693c4.391 5.333 10.476 7.023 16.78 7.976c9.73 1.472 19.286.922 28.325-3.526c1.034-.509 1.99-1.187 3.12-1.872c.847 2.46 1.068 4.944.772 7.473c-.72 6.158-3.785 10.915-8.659 14.52c-1.949 1.442-4.01 2.731-6.024 4.092c-6.184 4.178-7.857 9.08-5.533 16.208c.055.174.105.348.23.772c-3.158-1.413-5.464-3.47-7.221-6.176c-1.856-2.855-2.74-6.014-2.786-9.43c-.023-1.663-.023-3.342-.247-4.98c-.546-3.997-2.422-5.787-5.957-5.89c-3.628-.106-6.498 2.136-7.259 5.669c-.058.27-.142.538-.226.853z"
-              />
-            </svg>
+            <RLLogo variant="logotype" class="h-8 w-auto" mode="white" />
           </a>
           <p class="text-sm text-white font-medium">{t("app.footer.tagline")}</p>
           <p class="text-xs text-gray">© {today.getFullYear()} octavianmironescu.com</p>

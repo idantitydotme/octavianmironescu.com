@@ -1,4 +1,4 @@
-import { type Component, For, Show } from "solid-js";
+import { For, Show } from "solid-js";
 import { useHead } from "@solidjs/web";
 import { createSeoHead } from "@rimelight/seo/head";
 import { t } from "@rimelight/i18n";
@@ -40,9 +40,16 @@ export interface TechCategory {
   items: TechItem[];
 }
 
+export interface TechGroup {
+  title: string;
+  categories: TechCategory[];
+}
+
 export interface ExperienceItem {
   role: string;
   company?: string;
+  "company-url"?: string;
+  image?: string;
   period: string;
   location?: string;
   summary?: string;
@@ -59,21 +66,25 @@ export interface EducationItem {
 export interface CertificationItem {
   title: string;
   issuer: string;
-  credentialId?: string;
+  "credential-id"?: string;
 }
+
+export type DatePeriod = string | { start: string; end?: string };
 
 export interface ResumeProject {
   name: string;
   role?: string;
-  period: string;
+  period: DatePeriod;
   href?: string;
+  "image-src"?: string;
   summary?: string;
+  highlights?: string[];
   tags?: string[];
 }
 
 const AVATAR_SRC = "https://cdn.octavianmironescu.com/images/image0.jpg";
 
-export const ResumePage: Component = () => {
+export default function ResumePage() {
   const age = () => {
     const d = new Date();
     return (
@@ -87,12 +98,12 @@ export const ResumePage: Component = () => {
     {
       icon: "i-logos-linkedin-icon",
       href: "https://www.linkedin.com/in/octavian-mironescu-a605b921a/",
-      ariaLabel: "LinkedIn",
+      ariaLabel: t("page.resume.aria.social.linkedin") ?? "LinkedIn",
     },
     {
       icon: "i-logos-github-icon",
       href: "https://github.com/MironescuOctavian",
-      ariaLabel: "GitHub",
+      ariaLabel: t("page.resume.aria.social.github") ?? "GitHub",
     },
   ];
 
@@ -111,19 +122,19 @@ export const ResumePage: Component = () => {
     },
     {
       label: t("page.resume.about.age.label"),
-      value: `${age()}`,
+      value: `${age()} ${t("page.resume.about.age.value")}`,
     },
   ];
 
   const languages: readonly LanguageSkill[] = [
-    { nameKey: "english", levelKey: "fluent", score: 100 },
-    { nameKey: "romanian", levelKey: "fluent", score: 100 },
-    { nameKey: "german", levelKey: "basic", score: 25 },
+    { nameKey: "lang_english", levelKey: "level_fluent", score: 100 },
+    { nameKey: "lang_romanian", levelKey: "level_fluent", score: 100 },
+    { nameKey: "lang_german", levelKey: "level_basic", score: 25 },
   ];
 
   const heroLinks = (): RLButtonProps[] => [
     {
-      label: t("page.resume.hero.hire"),
+      label: t("page.resume.hero.action.hire") ?? "",
       href: "/contact",
     },
     {
@@ -152,79 +163,88 @@ export const ResumePage: Component = () => {
     },
   ];
 
-  const techCategories = (): TechCategory[] => [
+  const techGroups = (): TechGroup[] => [
     {
-      title: t("page.resume.tech.languages"),
-      items: [
-        { label: t("app.text.java"), icon: "i-logos-java", href: "https://www.java.com/" },
+      title: t("page.resume.tech.group.web-dev"),
+      categories: [
         {
-          label: t("app.text.spring-boot"),
-          icon: "i-logos-spring-icon",
-          href: "https://spring.io/projects/spring-boot",
+          title: t("page.resume.tech.cat.languages"),
+          items: [
+            { label: t("app.text.java"), icon: "i-logos-java", href: "https://www.java.com/" },
+            {
+              label: t("app.text.spring-boot"),
+              icon: "i-logos-spring-icon",
+              href: "https://spring.io/projects/spring-boot",
+            },
+            {
+              label: t("app.text.typescript"),
+              icon: "i-logos-typescript-icon",
+              href: "https://www.typescriptlang.org/",
+            },
+            { label: t("app.text.vue"), icon: "i-logos-vue", href: "https://vuejs.org/" },
+            {
+              label: t("app.text.solidjs"),
+              icon: "i-logos-solidjs-icon",
+              href: "https://www.solidjs.com/",
+            },
+            { label: t("app.text.unocss"), icon: "i-logos-unocss", href: "https://unocss.dev/" },
+          ],
         },
         {
-          label: t("app.text.typescript"),
-          icon: "i-logos-typescript-icon",
-          href: "https://www.typescriptlang.org/",
-        },
-        { label: t("app.text.vue"), icon: "i-logos-vue", href: "https://vuejs.org/" },
-        {
-          label: t("app.text.solidjs"),
-          icon: "i-logos-solidjs-icon",
-          href: "https://www.solidjs.com/",
-        },
-        { label: t("app.text.unocss"), icon: "i-logos-unocss", href: "https://unocss.dev/" },
-      ],
-    },
-    {
-      title: t("page.resume.tech.environment"),
-      items: [
-        {
-          label: t("app.text.intellij"),
-          icon: "i-logos-intellij-idea",
-          href: "https://www.jetbrains.com/idea/",
+          title: t("page.resume.tech.cat.environment"),
+          items: [
+            {
+              label: t("app.text.intellij"),
+              icon: "i-logos-intellij-idea",
+              href: "https://www.jetbrains.com/idea/",
+            },
+            {
+              label: t("app.text.visual-studio-code"),
+              icon: "i-logos-visual-studio-code",
+              href: "https://code.visualstudio.com/",
+            },
+            {
+              label: t("app.text.webstorm"),
+              icon: "i-logos-webstorm",
+              href: "https://www.jetbrains.com/webstorm/",
+            },
+          ],
         },
         {
-          label: t("app.text.visual-studio-code"),
-          icon: "i-logos-visual-studio-code",
-          href: "https://code.visualstudio.com/",
+          title: t("page.resume.tech.cat.build"),
+          items: [
+            { label: t("app.text.gradle"), icon: "i-logos-gradle", href: "https://gradle.org/" },
+            {
+              label: t("app.text.vite-plus"),
+              icon: "i-logos-vitejs",
+              href: "https://viteplus.dev/",
+            },
+            { label: "pnpm", icon: "i-logos-pnpm", href: "https://pnpm.io/" },
+          ],
         },
         {
-          label: t("app.text.webstorm"),
-          icon: "i-logos-webstorm",
-          href: "https://www.jetbrains.com/webstorm/",
-        },
-      ],
-    },
-    {
-      title: t("page.resume.tech.build"),
-      items: [
-        { label: t("app.text.gradle"), icon: "i-logos-gradle", href: "https://gradle.org/" },
-        { label: t("app.text.vite-plus"), icon: "i-logos-vitejs", href: "https://viteplus.dev/" },
-        { label: "pnpm", icon: "i-logos-pnpm", href: "https://pnpm.io/" },
-      ],
-    },
-    {
-      title: t("page.resume.tech.deployment"),
-      items: [
-        {
-          label: t("app.text.docker"),
-          icon: "i-logos-docker-icon",
-          href: "https://www.docker.com/",
-        },
-        {
-          label: t("app.text.cloudflare"),
-          icon: "i-logos-cloudflare-icon",
-          href: "https://cloudflare.com/",
+          title: t("page.resume.tech.cat.deployment"),
+          items: [
+            {
+              label: t("app.text.docker"),
+              icon: "i-logos-docker-icon",
+              href: "https://www.docker.com/",
+            },
+            {
+              label: t("app.text.cloudflare"),
+              icon: "i-logos-cloudflare-icon",
+              href: "https://cloudflare.com/",
+            },
+          ],
         },
       ],
     },
   ];
 
-  const experiences = () => t.raw<ExperienceItem[]>("page.resume.experience.items", []);
-  const education = () => t.raw<EducationItem[]>("page.resume.education.items", []);
-  const projects = () => t.raw<ResumeProject[]>("page.resume.projects.items", []);
-  const certifications = () => t.raw<CertificationItem[]>("page.resume.certifications.items", []);
+  const experiences = () => t.raw<ExperienceItem[]>("page.resume.experiences", []);
+  const education = () => t.raw<EducationItem[]>("page.resume.education", []);
+  const certifications = () => t.raw<CertificationItem[]>("page.resume.certifications", []);
+  const projects = () => t.raw<ResumeProject[]>("page.resume.projects", []);
 
   useHead(() =>
     createSeoHead({
@@ -236,257 +256,21 @@ export const ResumePage: Component = () => {
   return (
     <>
       <RLContainer class="max-w-none">
-        <RLPage>
-          <div class="flex flex-col md:flex-row gap-xl">
-            {/* Page Body */}
-            <div class="flex flex-col gap-xl py-8 md:py-16 flex-1">
-              <RLPageSection
-                variant="hero"
-                orientation="horizontal"
-                title={t("page.resume.hero.title")}
-                description={t("page.resume.hero.description")}
-                links={heroLinks()}
-              >
-                <RLImage
-                  src={AVATAR_SRC}
-                  alt={t("page.resume.sidebar.name")}
-                  width={800}
-                  height={800}
-                />
-              </RLPageSection>
-
-              {/* Skills Section */}
-              <section aria-labelledby="resume-skills-heading" class="flex flex-col gap-md">
-                <header class="flex flex-col gap-xs">
-                  <h2 id="resume-skills-heading" class="text-3xl font-bold">
-                    {t("page.resume.skills.heading")}
-                  </h2>
-                  <hr aria-hidden="true" class="border-neutral-500" />
-                </header>
-                <ul class="grid grid-cols-1 md:grid-cols-3 gap-lg">
-                  <For each={skills()}>
-                    {(skill) => (
-                      <li>
-                        <div class="flex items-center gap-sm">
-                          <RLIcon name={skill.icon} size="lg" class="text-primary-500" />
-                          <h3 class="text-lg font-bold">{skill.title}</h3>
-                        </div>
-                        <p class="text-sm text-neutral-500">{skill.description}</p>
-                      </li>
-                    )}
-                  </For>
-                </ul>
-              </section>
-
-              {/* Technologies & Tools Section */}
-              <section aria-labelledby="resume-tech-heading" class="flex flex-col gap-md">
-                <header class="flex flex-col gap-xs">
-                  <h2 id="resume-tech-heading" class="text-3xl font-bold">
-                    {t("page.resume.tech.heading")}
-                  </h2>
-                  <hr aria-hidden="true" class="border-neutral-500" />
-                </header>
-
-                <ul class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-lg">
-                  <For each={techCategories()}>
-                    {(category) => (
-                      <li class="flex flex-col gap-md">
-                        <h3 class="text-sm font-bold">{category.title}</h3>
-                        <ul class="flex flex-col gap-xs w-full">
-                          <For each={category.items}>
-                            {(item) => (
-                              <li class="w-full">
-                                <RLButton
-                                  block
-                                  justify="start"
-                                  variant="ghost"
-                                  color="neutral"
-                                  leadingIcon={item.icon}
-                                  href={item.href}
-                                  label={item.label}
-                                  class="text-sm"
-                                />
-                              </li>
-                            )}
-                          </For>
-                        </ul>
-                      </li>
-                    )}
-                  </For>
-                </ul>
-              </section>
-
-              {/* Experience Section */}
-              <section aria-labelledby="resume-experience-heading" class="flex flex-col gap-md">
-                <header class="flex flex-col gap-xs">
-                  <h2 id="resume-experience-heading" class="text-3xl font-bold">
-                    {t("page.resume.experience.heading")}
-                  </h2>
-                  <hr aria-hidden="true" class="border-neutral-500" />
-                </header>
-                <RLTimeline
-                  orientation="vertical"
-                  size="xl"
-                  class="w-full"
-                  items={[...experiences()].reverse().map((exp) => ({
-                    date: exp.period,
-                    title: exp.company ? `${exp.role} @ ${exp.company}` : exp.role,
-                    icon: "i-lucide-briefcase",
-                    exp,
-                  }))}
-                >
-                  {(ctx) => {
-                    const exp =
-                      (ctx as { exp?: ExperienceItem }).exp ?? (ctx as unknown as ExperienceItem);
-                    return (
-                      <div class="flex flex-col gap-2">
-                        <Show when={exp.location}>
-                          <p class="text-sm text-neutral-500">{exp.location}</p>
-                        </Show>
-                        <Show when={exp.tags && exp.tags.length > 0}>
-                          <div class="flex flex-wrap gap-1.5">
-                            <For each={exp.tags}>
-                              {(tag) => <RLBadge variant="soft">{tag}</RLBadge>}
-                            </For>
-                          </div>
-                        </Show>
-                        <Show when={exp.summary}>
-                          <div>
-                            <span class="text-sm font-bold text-neutral-500 block">
-                              {t("page.resume.experience.summary")}:
-                            </span>
-                            <p class="text-sm text-neutral-500">{exp.summary}</p>
-                          </div>
-                        </Show>
-                        <Show when={exp.responsibilities && exp.responsibilities.length > 0}>
-                          <div>
-                            <span class="text-sm font-bold text-neutral-500 block">
-                              {t("page.resume.experience.responsibilities")}:
-                            </span>
-                            <ul class="flex flex-col gap-sm pl-lg list-disc text-sm text-neutral-500">
-                              <For each={exp.responsibilities}>{(resp) => <li>{resp}</li>}</For>
-                            </ul>
-                          </div>
-                        </Show>
-                      </div>
-                    );
-                  }}
-                </RLTimeline>
-              </section>
-
-              {/* Education Section */}
-              <section aria-labelledby="resume-education-heading" class="flex flex-col gap-md">
-                <header class="flex flex-col gap-xs">
-                  <h2 id="resume-education-heading" class="text-3xl font-bold">
-                    {t("page.resume.education.heading")}
-                  </h2>
-                  <hr aria-hidden="true" class="border-neutral-500" />
-                </header>
-                <RLTimeline
-                  orientation="vertical"
-                  size="xl"
-                  items={[...education()].reverse().map((edu) => ({
-                    date: edu.period,
-                    title: edu.degree,
-                    description: edu.school,
-                    icon: "i-lucide-graduation-cap",
-                  }))}
-                />
-              </section>
-
-              {/* Projects Section */}
-              <section aria-labelledby="resume-projects-heading" class="flex flex-col gap-md">
-                <header class="flex flex-col gap-xs">
-                  <h2 id="resume-projects-heading" class="text-3xl font-bold">
-                    {t("page.resume.projects.heading")}
-                  </h2>
-                  <hr aria-hidden="true" class="border-neutral-500" />
-                </header>
-                <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-md md:gap-lg">
-                  <For each={projects()}>
-                    {(project) => (
-                      <article class="flex flex-col gap-sm">
-                        <header class="flex items-start justify-between gap-sm">
-                          <div class="flex flex-col gap-0.5 min-w-0">
-                            <h3 class="text-base font-bold">{project.name}</h3>
-                            <div class="flex flex-wrap items-center gap-x-1.5 text-xs text-neutral-500">
-                              <time datetime={project.period}>{project.period}</time>
-                              <Show when={project.role}>
-                                <span aria-hidden="true">·</span>
-                                <span>{project.role}</span>
-                              </Show>
-                            </div>
-                          </div>
-
-                          <Show when={project.href}>
-                            <RLButton
-                              size="sm"
-                              variant="soft"
-                              href={project.href}
-                              label={t("page.resume.projects.view")}
-                              aria-label={`${t("page.resume.projects.view")}: ${project.name}`}
-                              trailingIcon="i-lucide-external-link"
-                              class="shrink-0"
-                            />
-                          </Show>
-                        </header>
-
-                        <Show when={project.tags && project.tags.length > 0}>
-                          <div class="flex flex-wrap gap-1.5">
-                            <For each={project.tags}>
-                              {(tag) => (
-                                <RLBadge size="sm" variant="soft">
-                                  {tag}
-                                </RLBadge>
-                              )}
-                            </For>
-                          </div>
-                        </Show>
-
-                        <Show when={project.summary}>
-                          <p class="text-sm text-neutral-500">{project.summary}</p>
-                        </Show>
-                      </article>
-                    )}
-                  </For>
-                </div>
-              </section>
-
-              {/* Certifications Section */}
-              <Show when={certifications().length > 0}>
-                <section
-                  aria-labelledby="resume-certifications-heading"
-                  class="flex flex-col gap-md"
-                >
-                  <header class="flex flex-col gap-xs">
-                    <h2 id="resume-certifications-heading" class="text-3xl font-bold">
-                      {t("page.resume.certifications.heading")}
-                    </h2>
-                    <hr aria-hidden="true" class="border-neutral-500" />
-                  </header>
-                  <ul class="grid grid-cols-1 sm:grid-cols-2 gap-lg">
-                    <For each={certifications()}>
-                      {(cert) => (
-                        <li class="flex flex-col">
-                          <strong class="text-lg font-bold">{cert.title}</strong>
-                          <span class="text-sm text-neutral-500">{cert.issuer}</span>
-                          <Show when={cert.credentialId}>
-                            <code class="block text-xs text-neutral-500 break-all">
-                              {t("page.resume.certifications.id")}: {cert.credentialId}
-                            </code>
-                          </Show>
-                        </li>
-                      )}
-                    </For>
-                  </ul>
-                </section>
-              </Show>
-            </div>
-
-            {/* Left Sidebar */}
+        <RLPage
+          ui={{
+            // Resume-only: the sidebar stays after the body in source order (h1 before h2),
+            // but is shown first on every breakpoint, so it sits above the body on mobile
+            // and on the left on large screens.
+            right: (base: string) =>
+              `${base
+                .split(" ")
+                .filter((cls: string) => !/(^|:)order-/.test(cls))
+                .join(" ")} order-first`,
+          }}
+          right={
             <aside
-              aria-label={t("page.resume.sidebar.aria")}
-              class="order-first flex flex-col w-full gap-xl py-8 md:py-16 md:w-80 shrink-0 border-b md:border-b-0 md:border-r border-primary-500 md:pr-8"
+              aria-label={t("page.resume.aria.sidebar.profile")}
+              class="order-first flex flex-col w-full gap-xl py-8 md:py-16 border-b md:border-b-0 md:border-r border-primary-500 md:pr-8"
             >
               {/* Introduction Section */}
               <section aria-labelledby="resume-sidebar-name" class="flex flex-col items-center">
@@ -540,7 +324,9 @@ export const ResumePage: Component = () => {
                     {(aboutDetail) => (
                       <div class="flex justify-between">
                         <dt>{aboutDetail.label}</dt>
-                        <dd>{aboutDetail.value}</dd>
+                        <dd>
+                          <span>{aboutDetail.value}</span>
+                        </dd>
                       </div>
                     )}
                   </For>
@@ -548,9 +334,11 @@ export const ResumePage: Component = () => {
                     <dt>{t("page.resume.about.location.label")}</dt>
                     <dd>
                       <RLLink
+                        // Resume-only: keep the city on one line so the external icon sits right after it.
+                        ui={{ root: "whitespace-nowrap" }}
                         leadingIcon="i-lucide-map-pin"
-                        label={t("page.resume.about.location.value")}
-                        aria-label={`${t("page.resume.about.location.label")}: ${t("page.resume.about.location.value")}`}
+                        label={t("page.resume.sidebar.location")}
+                        aria-label={`${t("page.resume.about.location.label")}: ${t("page.resume.sidebar.location")}`}
                         href="https://en.wikipedia.org/wiki/Bucharest"
                         class="text-sm hover:text-primary-400"
                       />
@@ -574,15 +362,17 @@ export const ResumePage: Component = () => {
                   <For each={languages}>
                     {(language) => (
                       <div class="grid grid-cols-[1fr_auto] gap-y-1 items-center">
-                        <dt class="text-sm">{t(`page.resume.languages.${language.nameKey}`)}</dt>
+                        <dt class="text-sm">
+                          {t(`page.resume.${language.nameKey.replace(/_/g, ".")}`)}
+                        </dt>
                         <dd class="text-sm text-neutral-500 text-end">
-                          {t(`page.resume.languages.${language.levelKey}`)}
+                          {t(`page.resume.${language.levelKey.replace(/_/g, ".")}`)}
                         </dd>
                         <dd class="col-span-2">
                           <RLProgress
                             size="sm"
                             value={language.score}
-                            aria-label={`${t(`page.resume.languages.${language.nameKey}`)}: ${t(`page.resume.languages.${language.levelKey}`)}`}
+                            aria-label={`${t(`page.resume.${language.nameKey.replace(/_/g, ".")}`)}: ${t(`page.resume.${language.levelKey.replace(/_/g, ".")}`)}`}
                           />
                         </dd>
                       </div>
@@ -591,11 +381,315 @@ export const ResumePage: Component = () => {
                 </dl>
               </section>
             </aside>
+          }
+        >
+          {/* Page Body */}
+          <div class="flex flex-col gap-xl py-8 md:py-16">
+            <RLPageSection
+              variant="hero"
+              orientation="horizontal"
+              title={t("page.resume.hero.title")}
+              description={t("page.resume.hero.description")}
+              links={heroLinks()}
+            >
+              <RLImage
+                src={AVATAR_SRC}
+                alt={t("page.resume.sidebar.name")}
+                width={800}
+                height={800}
+              />
+            </RLPageSection>
+
+            {/* Skills Section */}
+            <section aria-labelledby="resume-skills-heading" class="flex flex-col gap-md">
+              <header class="flex flex-col gap-xs">
+                <h2 id="resume-skills-heading" class="text-3xl font-bold">
+                  {t("page.resume.skills.heading")}
+                </h2>
+                <hr aria-hidden="true" class="border-neutral-500" />
+              </header>
+              <ul class="grid grid-cols-1 md:grid-cols-3 gap-lg">
+                <For each={skills()}>
+                  {(skill) => (
+                    <li>
+                      <div class="flex items-center gap-sm">
+                        <RLIcon name={skill.icon} size="lg" class="text-primary-500" />
+                        <h3 class="text-lg font-bold">{skill.title}</h3>
+                      </div>
+                      <p class="text-sm text-neutral-500">{skill.description}</p>
+                    </li>
+                  )}
+                </For>
+              </ul>
+            </section>
+
+            {/* Technologies & Tools Section */}
+            <section aria-labelledby="resume-tech-heading" class="flex flex-col gap-md">
+              <header class="flex flex-col gap-xs">
+                <h2 id="resume-tech-heading" class="text-3xl font-bold">
+                  {t("page.resume.tech.heading")}
+                </h2>
+                <hr aria-hidden="true" class="border-neutral-500" />
+              </header>
+
+              <For each={techGroups()}>
+                {(group, groupIndex) => (
+                  <section
+                    aria-labelledby={`resume-tech-group-${groupIndex()}`}
+                    class="flex flex-col gap-md"
+                  >
+                    <div class="flex flex-col gap-sm">
+                      <h3 id={`resume-tech-group-${groupIndex()}`} class="text-lg font-bold">
+                        {group.title}
+                      </h3>
+                      <hr aria-hidden="true" class="border-neutral-500" />
+                    </div>
+
+                    <ul class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-lg">
+                      <For each={group.categories}>
+                        {(category) => (
+                          <li class="flex flex-col gap-md">
+                            <h4 class="text-sm font-bold">{category.title}</h4>
+                            <ul class="flex flex-col gap-xs w-full">
+                              <For each={category.items}>
+                                {(item) => (
+                                  <li class="w-full">
+                                    <RLButton
+                                      justify="start"
+                                      variant="ghost"
+                                      color="neutral"
+                                      leadingIcon={item.icon}
+                                      href={item.href}
+                                      label={item.label}
+                                      class="w-full text-sm"
+                                    />
+                                  </li>
+                                )}
+                              </For>
+                            </ul>
+                          </li>
+                        )}
+                      </For>
+                    </ul>
+                  </section>
+                )}
+              </For>
+            </section>
+
+            {/* Experience Section */}
+            <section aria-labelledby="resume-experience-heading" class="flex flex-col gap-md">
+              <header class="flex flex-col gap-xs">
+                <h2 id="resume-experience-heading" class="text-3xl font-bold">
+                  {t("page.resume.experience.heading")}
+                </h2>
+                <hr aria-hidden="true" class="border-neutral-500" />
+              </header>
+              <RLTimeline
+                orientation="vertical"
+                size="xl"
+                class="w-full"
+                items={[...experiences()].reverse().map((exp) => ({
+                  date: exp.period,
+                  title: exp.company ? `${exp.role} @ ${exp.company}` : exp.role,
+                  ...(exp.image
+                    ? { avatar: { src: exp.image, alt: exp.company ?? exp.role } }
+                    : { icon: "i-lucide-briefcase" }),
+                  exp,
+                }))}
+              >
+                {(ctx) => {
+                  const exp =
+                    (ctx as { exp?: ExperienceItem }).exp ?? (ctx as unknown as ExperienceItem);
+                  return (
+                    <div class="flex flex-col gap-2">
+                      <Show when={exp.location}>
+                        <p class="text-sm text-neutral-500">{exp.location}</p>
+                      </Show>
+                      <Show when={exp.tags && exp.tags.length > 0}>
+                        <div class="flex flex-wrap gap-1.5">
+                          <For each={exp.tags}>
+                            {(tag) => <RLBadge variant="soft">{tag}</RLBadge>}
+                          </For>
+                        </div>
+                      </Show>
+                      <Show when={exp.summary}>
+                        <div>
+                          <span class="text-sm font-bold text-neutral-500 block">
+                            {t("page.resume.exp.summary.label")}:
+                          </span>
+                          <p class="text-sm text-neutral-500">{exp.summary}</p>
+                        </div>
+                      </Show>
+                      <Show when={exp.responsibilities && exp.responsibilities.length > 0}>
+                        <div>
+                          <span class="text-sm font-bold text-neutral-500 block">
+                            {t("page.resume.exp.responsibilities.label")}:
+                          </span>
+                          <ul class="flex flex-col gap-sm pl-lg list-disc text-sm text-neutral-500">
+                            <For each={exp.responsibilities}>{(resp) => <li>{resp}</li>}</For>
+                          </ul>
+                        </div>
+                      </Show>
+                    </div>
+                  );
+                }}
+              </RLTimeline>
+            </section>
+
+            {/* Education Section */}
+            <section aria-labelledby="resume-education-heading" class="flex flex-col gap-md">
+              <header class="flex flex-col gap-xs">
+                <h2 id="resume-education-heading" class="text-3xl font-bold">
+                  {t("page.resume.headings.education")}
+                </h2>
+                <hr aria-hidden="true" class="border-neutral-500" />
+              </header>
+              <RLTimeline
+                orientation="vertical"
+                size="xl"
+                items={[...education()].reverse().map((edu) => ({
+                  date: edu.period,
+                  title: edu.degree,
+                  description: edu.school,
+                  icon: "i-lucide-graduation-cap",
+                }))}
+              />
+            </section>
+
+            {/* Projects Section */}
+            <section aria-labelledby="resume-projects-heading" class="flex flex-col gap-md">
+              <header class="flex flex-col gap-xs">
+                <h2 id="resume-projects-heading" class="text-3xl font-bold">
+                  {t("page.resume.headings.projects")}
+                </h2>
+                <hr aria-hidden="true" class="border-neutral-500" />
+              </header>
+              <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-md md:gap-lg">
+                <For each={projects()}>
+                  {(project) => (
+                    <article class="flex flex-col gap-sm">
+                      <header class="flex items-start justify-between gap-sm">
+                        <div class="flex flex-col gap-0.5 min-w-0">
+                          <h3 class="text-base font-bold">{project.name}</h3>
+                          <div class="flex flex-wrap items-center gap-x-1.5 text-xs text-neutral-500">
+                            {typeof project.period === "object" ? (
+                              <span class="inline-flex items-center gap-1">
+                                <time datetime={project.period.start}>{project.period.start}</time>
+                                <span aria-hidden="true">–</span>
+                                {project.period.end ? (
+                                  <time datetime={project.period.end}>{project.period.end}</time>
+                                ) : (
+                                  <span>{t("page.resume.period.present")}</span>
+                                )}
+                              </span>
+                            ) : (
+                              <time datetime={project.period}>{project.period}</time>
+                            )}
+                            <Show when={project.role}>
+                              <span aria-hidden="true">·</span>
+                              <span>{project.role}</span>
+                            </Show>
+                          </div>
+                        </div>
+
+                        <Show when={project.href}>
+                          <RLButton
+                            size="sm"
+                            variant="soft"
+                            href={project.href}
+                            label={t("page.resume.project.view.button")}
+                            aria-label={`${t("page.resume.project.view.button")}: ${project.name}`}
+                            trailingIcon="i-lucide-external-link"
+                            class="shrink-0"
+                          />
+                        </Show>
+                      </header>
+
+                      <Show when={project.tags && project.tags.length > 0}>
+                        <div class="flex flex-wrap gap-1.5">
+                          <For each={project.tags}>
+                            {(tag) => (
+                              <RLBadge size="sm" variant="soft">
+                                {tag}
+                              </RLBadge>
+                            )}
+                          </For>
+                        </div>
+                      </Show>
+
+                      <Show when={project["image-src"]}>
+                        {(imageSrc) => (
+                          <RLImage
+                            src={imageSrc()}
+                            alt={project.name}
+                            width={600}
+                            height={338}
+                            ui={{
+                              root: "w-full block",
+                              trigger: "w-full aspect-video",
+                              triggerImage: "w-full h-full max-w-none object-cover",
+                            }}
+                          />
+                        )}
+                      </Show>
+
+                      <Show when={project.summary}>
+                        <p class="text-sm text-neutral-500">{project.summary}</p>
+                      </Show>
+
+                      <Show when={project.highlights && project.highlights.length > 0}>
+                        <ul class="space-y-1 pl-4 list-disc text-xs text-neutral-500">
+                          <For each={project.highlights}>{(highlight) => <li>{highlight}</li>}</For>
+                        </ul>
+                      </Show>
+                    </article>
+                  )}
+                </For>
+              </div>
+            </section>
+
+            {/* Certifications Section */}
+            <Show when={certifications().length > 0}>
+              <section aria-labelledby="resume-certifications-heading" class="flex flex-col gap-md">
+                <header class="flex flex-col gap-xs">
+                  <h2 id="resume-certifications-heading" class="text-3xl font-bold">
+                    {t("page.resume.headings.certifications")}
+                  </h2>
+                  <hr aria-hidden="true" class="border-neutral-500" />
+                </header>
+                <ul class="grid grid-cols-1 sm:grid-cols-2 gap-lg">
+                  <For each={certifications()}>
+                    {(cert) => (
+                      <li>
+                        <details class="group cursor-pointer flex flex-col gap-1.5">
+                          <summary class="flex items-start justify-between gap-sm select-none">
+                            <span class="flex flex-col">
+                              <strong class="text-lg font-bold group-hover:text-primary-500 transition-colors">
+                                {cert.title}
+                              </strong>
+                              <span class="text-sm text-neutral-500">{cert.issuer}</span>
+                            </span>
+                            <Show when={cert["credential-id"]}>
+                              <span class="i-lucide-chevron-down text-neutral-500 transition-transform duration-200 group-open:rotate-180" />
+                            </Show>
+                          </summary>
+                          <Show when={cert["credential-id"]}>
+                            <div class="flex flex-col gap-1.5 pt-1">
+                              <code class="block text-xs text-neutral-500 break-all">
+                                {t("page.resume.labels.credential-id")}: {cert["credential-id"]}
+                              </code>
+                            </div>
+                          </Show>
+                        </details>
+                      </li>
+                    )}
+                  </For>
+                </ul>
+              </section>
+            </Show>
           </div>
         </RLPage>
       </RLContainer>
     </>
   );
-};
-
-export default ResumePage;
+}

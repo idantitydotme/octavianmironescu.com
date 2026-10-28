@@ -41,12 +41,23 @@
       "hero": {
         "title": "Hey! I'm Octavian Mironescu",
         "description": "I'm a Java & Web Software Developer.",
-        "hire": "Hire me"
+        "action": {
+          "hire": "Hire me"
+        }
       },
       "sidebar": {
         "name": "Mironescu Octavian",
         "title": "Software Developer",
-        "aria": "Profile"
+        "location": "Bucharest, Romania"
+      },
+      "aria": {
+        "sidebar": {
+          "profile": "Profile"
+        },
+        "social": {
+          "linkedin": "LinkedIn",
+          "github": "GitHub"
+        }
       },
       "about": {
         "heading": "About Me",
@@ -63,18 +74,22 @@
           "value": "Romanian"
         },
         "age": {
-          "label": "Age"
+          "label": "Age",
+          "value": "years old"
         },
         "location": {
-          "label": "Location",
-          "value": "Bucharest, Romania"
+          "label": "Location"
         }
       },
       "languages": {
-        "heading": "Languages",
+        "heading": "Languages"
+      },
+      "lang": {
         "english": "English",
         "romanian": "Romanian",
-        "german": "German",
+        "german": "German"
+      },
+      "level": {
         "fluent": "Fluent",
         "basic": "Basic"
       },
@@ -95,80 +110,97 @@
       },
       "tech": {
         "heading": "Technologies & Tools",
-        "languages": "Languages & Frameworks",
-        "environment": "Development Environment",
-        "build": "Build & Package",
-        "deployment": "Deployment"
+        "group": {
+          "web-dev": "Languages & Tools"
+        },
+        "cat": {
+          "languages": "Languages & Frameworks",
+          "environment": "Development Environment",
+          "build": "Build & Package",
+          "deployment": "Deployment"
+        }
       },
       "experience": {
-        "heading": "Experience",
-        "summary": "Summary",
-        "responsibilities": "Responsibilities",
-        "items": [
-          {
-            "company": "Property Pass",
-            "period": "June 2022 - November 2022",
-            "tags": ["Kotlin", "Java", "Spring Boot", "MongoDB", "GraphQL"],
-            "role": "Junior Programmer",
-            "location": "Utrecht, Netherlands - Remote",
-            "summary": "Developed, built and maintained the application behind the company's website that handled real estate passports for commercial real estate owners.",
-            "responsibilities": [
-              "Development of a Spring Boot based application written in Kotlin related to real estate commerce.",
-              "Creating and managing data in a MongoDB cluster.",
-              "Writing aggregation pipelines for MongoDB data for analytics breakdowns for stakeholders.",
-              "Refactoring project documentation."
-            ]
-          },
-          {
-            "company": "CoruScript",
-            "period": "May 2023 - January 2024",
-            "tags": ["Java", "Spring Boot", "Amazon Web Services", "PostgreSQL"],
-            "role": "Junior Programmer",
-            "location": "Bucharest, Romania - On-site/Remote",
-            "summary": "Developed the backend part of the website of a platform that offers services for building applications based on the clients' needs.",
-            "responsibilities": [
-              "Developed, tested and maintained the company's website application built with Java and Spring.",
-              "Maintained and wrote pipelines for the cloud architecture using AWS."
-            ]
-          },
-          {
-            "role": "Freelancing",
-            "period": "February 2024 - Present",
-            "location": "Bucharest, Romania - On-site/Remote",
-            "summary": "Wrote, tested, and maintained software and websites for various clients on a contract basis."
-          }
-        ]
+        "heading": "Experience"
       },
-      "education": {
-        "heading": "Education",
-        "items": [
-          {
-            "degree": "Bachelor's Degree in Computer Science",
-            "school": "OVID - Universitatea Ovidius Constanța",
-            "period": "2018 - 2021"
-          },
-          {
-            "degree": "Master's Degree in Computer Science",
-            "school": "OVID - Universitatea Ovidius Constanța",
-            "period": "2021 - 2023"
-          }
-        ]
+      "exp": {
+        "summary": {
+          "label": "Summary"
+        },
+        "responsibilities": {
+          "label": "Responsibilities"
+        }
       },
-      "projects": {
-        "heading": "Projects",
-        "view": "View",
-        "items": [
-          {
-            "name": "Discord Automation Bot",
-            "role": "Developer & Maintainer",
-            "period": "2024",
-            "tags": ["Java", "Discord Developer Portal"]
-          }
-        ]
+      "experiences": [
+        {
+          "company": "Property Pass",
+          "period": "June 2022 - November 2022",
+          "tags": ["Kotlin", "Java", "Spring Boot", "MongoDB", "GraphQL"],
+          "role": "Junior Programmer",
+          "location": "Utrecht, Netherlands - Remote",
+          "summary": "Developed, built and maintained the application behind the company's website that handled real estate passports for commercial real estate owners.",
+          "responsibilities": [
+            "Development of a Spring Boot based application written in Kotlin related to real estate commerce.",
+            "Creating and managing data in a MongoDB cluster.",
+            "Writing aggregation pipelines for MongoDB data for analytics breakdowns for stakeholders.",
+            "Refactoring project documentation."
+          ]
+        },
+        {
+          "company": "CoruScript",
+          "period": "May 2023 - January 2024",
+          "tags": ["Java", "Spring Boot", "Amazon Web Services", "PostgreSQL"],
+          "role": "Junior Programmer",
+          "location": "Bucharest, Romania - On-site/Remote",
+          "summary": "Developed the backend part of the website of a platform that offers services for building applications based on the clients' needs.",
+          "responsibilities": [
+            "Developed, tested and maintained the company's website application built with Java and Spring.",
+            "Maintained and wrote pipelines for the cloud architecture using AWS."
+          ]
+        },
+        {
+          "role": "Freelancing",
+          "period": "February 2024 - Present",
+          "location": "Bucharest, Romania - On-site/Remote",
+          "summary": "Wrote, tested, and maintained software and websites for various clients on a contract basis."
+        }
+      ],
+      "education": [
+        {
+          "degree": "Bachelor's Degree in Computer Science",
+          "school": "OVID - Universitatea Ovidius Constanța",
+          "period": "2018 - 2021"
+        },
+        {
+          "degree": "Master's Degree in Computer Science",
+          "school": "OVID - Universitatea Ovidius Constanța",
+          "period": "2021 - 2023"
+        }
+      ],
+      "headings": {
+        "education": "Education",
+        "projects": "Projects",
+        "certifications": "Certifications"
       },
-      "certifications": {
-        "heading": "Certifications",
-        "id": "ID"
+      "projects": [
+        {
+          "name": "Discord Automation Bot",
+          "role": "Developer & Maintainer",
+          "period": "2024",
+          "tags": ["Java", "Discord Developer Portal"]
+        }
+      ],
+      "project": {
+        "view": {
+          "button": "View"
+        }
+      },
+      "period": {
+        "present": "Present"
+      },
+      "certifications": [],
+      "labels": {
+        "credential-id": "ID"
       }
     },
     "legal": {
@@ -233,6 +265,14 @@
         "about": "About",
         "resume": "Resume",
         "contact": "Contact"
+      },
+      "menu": {
+        "title": "Menu",
+        "open": "Open menu"
+      },
+      "actions": {
+        "title": "Links",
+        "open": "Open links"
       }
     },
     "loading": {

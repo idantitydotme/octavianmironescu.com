@@ -1,66 +1,162 @@
+import { type Component, For } from "solid-js";
+import {
+  RLHeader,
+  RLLogo,
+  RLNavigationMenu,
+  RLButton,
+  RLSlideover,
+  type RLButtonProps,
+} from "@rimelight/ui";
 import { t } from "@rimelight/i18n";
-import { RLButton, RLHeader, RLNavigationMenu } from "@rimelight/ui";
 
-export default function Header() {
-  const items = [
-    { label: t("app.header.nav.home"), href: "/" },
-    { label: t("app.header.nav.blog"), description: t("app.text.blog-stuff"), href: "/blog" },
+export interface AppHeaderProps {
+  stackIndex?: number;
+}
+
+export const AppHeader: Component<AppHeaderProps> = (props) => {
+  const leftLinks = () => [
     {
-      label: t("app.header.nav.resume"),
-      description: t("app.text.information-about-myself"),
-      href: "/resume",
+      label: t("app.header.nav.blog"),
+      to: "/blog",
     },
-    { label: t("app.header.nav.legal"), description: t("app.text.legal-stuff"), href: "/legal" },
     {
       label: t("app.header.nav.about"),
-      description: t("app.text.information-about-the-website"),
-      href: "/about",
+      to: "/about",
+    },
+  ];
+
+  const rightLinks = () => [
+    {
+      label: t("app.header.nav.resume"),
+      to: "/resume",
     },
     {
       label: t("app.header.nav.contact"),
-      description: t("app.text.get-in-touch"),
-      href: "/contact",
+      to: "/contact",
     },
+  ];
+
+  const socials = (): RLButtonProps[] => [
+    {
+      variant: "ghost",
+      leadingIcon: "i-logos-instagram-icon?mask text-white group-hover:text-primary-500",
+      href: "https://www.instagram.com/notoctamusic/",
+    },
+    {
+      variant: "ghost",
+      leadingIcon: "i-logos-github-icon?mask text-white group-hover:text-primary-500",
+      href: "https://github.com/MironescuOctavian",
+    },
+    {
+      variant: "ghost",
+      leadingIcon: "i-logos-linkedin-icon?mask text-white group-hover:text-primary-500",
+      href: "https://www.linkedin.com/in/octavian-mironescu-a605b921a/",
+    },
+  ];
+
+  const allMobileLinks = () => [
+    { label: t("app.header.nav.home"), to: "/" },
+    ...leftLinks(),
+    ...rightLinks(),
+    { label: t("app.header.nav.legal"), to: "/legal" },
   ];
 
   return (
     <RLHeader
-      hideOnScroll={true}
+      contain={false}
       fixed={true}
+      stackIndex={props.stackIndex ?? 1}
+      data-theme="dark"
+      class="bg-black"
       left={
-        <h2 class="m-0 text-sm sm:text-base md:text-lg">
-          <a href="/" class="no-underline">
-            Octavian Mironescu
+        <div class="flex items-center gap-md">
+          <a href="/" class="hidden md:flex items-center">
+            <RLLogo variant="logotype" class="h-6 w-auto" mode="white" />
           </a>
-        </h2>
-      }
-      center={
-        <div class="internal-links flex items-center">
-          <RLNavigationMenu items={items} />
+
+          <div class="hidden md:flex flex-row gap-md items-center">
+            <RLNavigationMenu
+              items={leftLinks()}
+              variant="link"
+              theme="flat"
+              ui={{
+                link: "text-white transition-colors duration-200 hover:text-primary-400 data-[state=open]:text-primary-400 aria-[current]:text-primary-400",
+              }}
+            />
+          </div>
+
+          <div class="block md:hidden">
+            <RLSlideover
+              side="left"
+              title={t("app.header.menu.title")}
+              trigger={
+                <RLButton
+                  color="neutral"
+                  variant="ghost"
+                  rounded={true}
+                  leadingIcon="i-lucide-menu"
+                  class="!text-white"
+                  aria-label={t("app.header.menu.open")}
+                />
+              }
+            >
+              <RLNavigationMenu
+                items={allMobileLinks()}
+                orientation="vertical"
+                variant="link"
+                ui={{
+                  link: "text-black dark:text-white flex justify-start items-center w-full text-left py-2 text-lg transition-colors duration-200 hover:text-primary-400 data-[state=open]:text-primary-400 aria-[current]:text-primary-400",
+                }}
+              />
+            </RLSlideover>
+          </div>
         </div>
       }
+      center={
+        <a href="/" class="block md:hidden">
+          <RLLogo variant="logomark" class="h-10 w-auto" mode="white" />
+        </a>
+      }
       right={
-        <div class="social-links flex max-sm:hidden">
-          <RLButton
-            href="https://m.webtoo.ls/@astro"
-            leadingIcon="i-logos-astro-icon"
-            variant="ghost"
-            size="xl"
-          />
-          <RLButton
-            href="https://twitter.com/astrodotbuild"
-            leadingIcon="i-logos-x"
-            variant="ghost"
-            size="xl"
-          />
-          <RLButton
-            href="https://github.com/withastro/astro"
-            leadingIcon="i-logos-github-icon"
-            variant="ghost"
-            size="xl"
-          />
+        <div class="flex items-center gap-md">
+          <div class="hidden md:flex flex-row gap-md items-center">
+            <RLNavigationMenu
+              items={rightLinks()}
+              variant="link"
+              theme="flat"
+              ui={{
+                link: "text-white transition-colors duration-200 hover:text-primary-400 data-[state=open]:text-primary-400 aria-[current]:text-primary-400",
+              }}
+            />
+            <For each={socials()}>{(buttonProps) => <RLButton {...buttonProps} />}</For>
+          </div>
+
+          <div class="block md:hidden">
+            <RLSlideover
+              side="right"
+              title={t("app.header.actions.title")}
+              trigger={
+                <RLButton
+                  color="neutral"
+                  variant="ghost"
+                  rounded={true}
+                  leadingIcon="i-lucide-ellipsis-vertical"
+                  class="!text-white"
+                  aria-label={t("app.header.actions.open")}
+                />
+              }
+            >
+              <div class="flex flex-col gap-md">
+                <For each={socials()}>
+                  {(buttonProps) => <RLButton {...buttonProps} block={true} />}
+                </For>
+              </div>
+            </RLSlideover>
+          </div>
         </div>
       }
     />
   );
-}
+};
+
+export default AppHeader;
