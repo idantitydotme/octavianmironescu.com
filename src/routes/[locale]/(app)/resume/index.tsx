@@ -128,7 +128,7 @@ export const ResumePage: Component = () => {
     },
     {
       variant: "outline",
-      label: "GitHub",
+      label: t("app.text.github"),
       href: "https://github.com/MironescuOctavian",
       leadingIcon: "i-lucide-github",
     },
@@ -156,37 +156,41 @@ export const ResumePage: Component = () => {
     {
       title: t("page.resume.tech.languages"),
       items: [
-        { label: "Java", icon: "i-logos-java", href: "https://www.java.com/" },
+        { label: t("app.text.java"), icon: "i-logos-java", href: "https://www.java.com/" },
         {
-          label: "Spring Boot",
+          label: t("app.text.spring-boot"),
           icon: "i-logos-spring-icon",
           href: "https://spring.io/projects/spring-boot",
         },
         {
-          label: "TypeScript",
+          label: t("app.text.typescript"),
           icon: "i-logos-typescript-icon",
           href: "https://www.typescriptlang.org/",
         },
-        { label: "Vue", icon: "i-logos-vue", href: "https://vuejs.org/" },
-        { label: "SolidJS", icon: "i-logos-solidjs-icon", href: "https://www.solidjs.com/" },
-        { label: "UnoCSS", icon: "i-logos-unocss", href: "https://unocss.dev/" },
+        { label: t("app.text.vue"), icon: "i-logos-vue", href: "https://vuejs.org/" },
+        {
+          label: t("app.text.solidjs"),
+          icon: "i-logos-solidjs-icon",
+          href: "https://www.solidjs.com/",
+        },
+        { label: t("app.text.unocss"), icon: "i-logos-unocss", href: "https://unocss.dev/" },
       ],
     },
     {
       title: t("page.resume.tech.environment"),
       items: [
         {
-          label: "IntelliJ",
+          label: t("app.text.intellij"),
           icon: "i-logos-intellij-idea",
           href: "https://www.jetbrains.com/idea/",
         },
         {
-          label: "Visual Studio Code",
+          label: t("app.text.visual-studio-code"),
           icon: "i-logos-visual-studio-code",
           href: "https://code.visualstudio.com/",
         },
         {
-          label: "WebStorm",
+          label: t("app.text.webstorm"),
           icon: "i-logos-webstorm",
           href: "https://www.jetbrains.com/webstorm/",
         },
@@ -195,17 +199,21 @@ export const ResumePage: Component = () => {
     {
       title: t("page.resume.tech.build"),
       items: [
-        { label: "Gradle", icon: "i-logos-gradle", href: "https://gradle.org/" },
-        { label: "Vite-plus", icon: "i-logos-vitejs", href: "https://viteplus.dev/" },
+        { label: t("app.text.gradle"), icon: "i-logos-gradle", href: "https://gradle.org/" },
+        { label: t("app.text.vite-plus"), icon: "i-logos-vitejs", href: "https://viteplus.dev/" },
         { label: "pnpm", icon: "i-logos-pnpm", href: "https://pnpm.io/" },
       ],
     },
     {
       title: t("page.resume.tech.deployment"),
       items: [
-        { label: "Docker", icon: "i-logos-docker-icon", href: "https://www.docker.com/" },
         {
-          label: "Cloudflare",
+          label: t("app.text.docker"),
+          icon: "i-logos-docker-icon",
+          href: "https://www.docker.com/",
+        },
+        {
+          label: t("app.text.cloudflare"),
           icon: "i-logos-cloudflare-icon",
           href: "https://cloudflare.com/",
         },

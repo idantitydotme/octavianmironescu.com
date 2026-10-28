@@ -1,8 +1,10 @@
 {
   "page": {
     "contact": {
-      "title": "Contact Us",
-      "description": "Get in touch with Octavian Mironescu directly.",
+      "meta": {
+        "title": "Contact Us",
+        "description": "Get in touch with Octavian Mironescu directly."
+      },
       "hero": {
         "title": "Get in Touch",
         "description": "Have a question, proposal, or want to collaborate? Send a message directly."
@@ -166,8 +168,7 @@
       },
       "certifications": {
         "heading": "Certifications",
-        "id": "ID",
-        "items": []
+        "id": "ID"
       }
     },
     "legal": {
@@ -176,26 +177,117 @@
         "description": "Policies and agreements."
       },
       "empty": "No legal documents yet."
+    },
+    "blog": {
+      "meta": {
+        "title": "Octavian Mironescu",
+        "description": "Personal website of Octavian Mironescu"
+      },
+      "categories": {
+        "aria-label": "Categories"
+      },
+      "empty": "No blog posts available yet."
+    },
+    "branding": {
+      "heading": "Branding"
+    },
+    "other-documents": {
+      "heading": "Other Documents"
+    },
+    "privacy-policy": {
+      "heading": "Privacy Policy"
+    },
+    "home": {
+      "hero": {
+        "greeting": "Hi, I'm Mironescu Octavian",
+        "title": "Software Developer"
+      },
+      "skills": {
+        "label": "My skills",
+        "heading": "What I do?"
+      },
+      "github": {
+        "heading": "GitHub Activity",
+        "calendar-alt": "MironescuOctavian GitHub contribution calendar"
+      },
+      "projects": {
+        "label": "My work",
+        "heading": "Projects",
+        "github-aria": "GitHub Repository",
+        "preview-aria": "Live Preview",
+        "more": "More projects on GitHub"
+      },
+      "contact": {
+        "label": "Let's talk",
+        "heading": "Contact",
+        "country": "Romania"
+      }
     }
   },
-  "nav": {
-    "home": "Home",
-    "blog": "Blog",
-    "legal": "Legal",
-    "about": "About",
-    "resume": "Resume",
-    "contact": "Contact"
-  },
-  "legal": {
-    "last-updated-on": "Last updated on"
-  },
-  "blog": {
-    "title": "Octavian Mironescu",
-    "description": "Personal website of Octavian Mironescu"
-  },
-  "languages": {
-    "en": "English",
-    "ro": "Română",
-    "pt": "Português"
+  "app": {
+    "header": {
+      "nav": {
+        "home": "Home",
+        "blog": "Blog",
+        "legal": "Legal",
+        "about": "About",
+        "resume": "Resume",
+        "contact": "Contact"
+      }
+    },
+    "loading": {
+      "page": "Loading.",
+      "post": "Loading post...",
+      "document": "Loading document..."
+    },
+    "footer": {
+      "home-aria": "Home",
+      "tagline": "Never stop searching.",
+      "theme-selector": "Theme selector",
+      "language-selector": "Language selector"
+    },
+    "text": {
+      "resources": "Resources",
+      "branding": "Branding",
+      "legal": "Legal",
+      "privacy-policy": "Privacy Policy",
+      "other-documents": "Other Documents",
+      "blog-stuff": "Blog stuff",
+      "information-about-myself": "Information about myself",
+      "legal-stuff": "Legal Stuff",
+      "information-about-the-website": "Information about the website",
+      "get-in-touch": "Get in touch",
+      "page-has-not-been-found": "Page has not been found.",
+      "about": "About",
+      "about-this-website": "About this website",
+      "branding-guidelines-and-assets": "Branding guidelines and assets",
+      "octavian-mironescu": "Octavian Mironescu",
+      "personal-website-of-octavian-mironescu": "Personal website of Octavian Mironescu",
+      "additional-legal-documents-and-resources": "Additional legal documents and resources",
+      "privacy-policy-for-octavianmironescu-com": "Privacy Policy for octavianmironescu.com",
+      "java": "Java",
+      "spring-boot": "Spring Boot",
+      "intellij": "IntelliJ",
+      "visual-studio-code": "Visual Studio Code",
+      "gradle": "Gradle",
+      "docker": "Docker",
+      "system": "System",
+      "white": "White",
+      "dark": "Dark",
+      "web-development": "Web Development",
+      "software-development": "Software Development",
+      "devops-cloud-infrastructure": "DevOps & Cloud Infrastructure",
+      "backend-api-service": "Backend API Service",
+      "full-stack-platform": "Full-stack Platform",
+      "developer-automation-tools": "Developer Automation Tools",
+      "github": "GitHub",
+      "typescript": "TypeScript",
+      "vue": "Vue",
+      "solidjs": "SolidJS",
+      "unocss": "UnoCSS",
+      "webstorm": "WebStorm",
+      "vite-plus": "Vite-plus",
+      "cloudflare": "Cloudflare"
+    }
   }
 }

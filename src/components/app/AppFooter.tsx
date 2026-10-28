@@ -1,5 +1,6 @@
 import { getCurrentLocale, getLocaleUrl, getLocales } from "@rimelight/i18n";
 import { useLocation } from "@solidjs/router";
+import { t } from "@rimelight/i18n";
 
 const languageLabels: Record<string, string> = {
   en: "English",
@@ -63,13 +64,30 @@ const socialLinks: SocialLink[] = [
   },
 ];
 
-const themeOptions: ThemeOption[] = [
-  { label: "System", value: "system", icon: "i-lucide-laptop" },
-  { label: "White", value: "white", icon: "i-mdi:white-balance-sunny" },
-  { label: "Dark", value: "dark", icon: "i-mdi:weather-night" },
-];
-
 export default function Footer() {
+  const themeOptions: ThemeOption[] = [
+    {
+      get label() {
+        return t("app.text.system");
+      },
+      value: "system",
+      icon: "i-lucide-laptop",
+    },
+    {
+      get label() {
+        return t("app.text.white");
+      },
+      value: "white",
+      icon: "i-mdi:white-balance-sunny",
+    },
+    {
+      get label() {
+        return t("app.text.dark");
+      },
+      value: "dark",
+      icon: "i-mdi:weather-night",
+    },
+  ];
   const today = new Date();
   const location = useLocation();
 
@@ -77,23 +95,23 @@ export default function Footer() {
 
   const footerLinkColumns = (): FooterLinkColumn[] => [
     {
-      title: "Resources",
+      title: t("app.text.resources"),
       links: [
         {
-          label: "Branding",
+          label: t("app.text.branding"),
           href: getLocaleUrl("/branding"),
         },
       ],
     },
     {
-      title: "Legal",
+      title: t("app.text.legal"),
       links: [
         {
-          label: "Privacy Policy",
+          label: t("app.text.privacy-policy"),
           href: getLocaleUrl("/privacy-policy"),
         },
         {
-          label: "Other Documents",
+          label: t("app.text.other-documents"),
           href: getLocaleUrl("/other-documents"),
         },
       ],
@@ -112,7 +130,11 @@ export default function Footer() {
       <div class="px-6 py-12 flex flex-col md:flex-row items-center md:items-start justify-between gap-10">
         {/* Left Section: Logo, Tagline, Copyright */}
         <div class="flex flex-col gap-3 items-center md:items-start text-center md:text-left order-last md:order-1">
-          <a href={getLocaleUrl("/")} class="inline-flex items-center" aria-label="Astro Home">
+          <a
+            href={getLocaleUrl("/")}
+            class="inline-flex items-center"
+            aria-label={t("app.footer.home-aria")}
+          >
             <svg
               class="h-8 w-auto text-white"
               viewBox="0 0 512 135"
@@ -135,7 +157,7 @@ export default function Footer() {
               />
             </svg>
           </a>
-          <p class="text-sm text-white font-medium">Never stop searching.</p>
+          <p class="text-sm text-white font-medium">{t("app.footer.tagline")}</p>
           <p class="text-xs text-gray">© {today.getFullYear()} octavianmironescu.com</p>
         </div>
 
@@ -164,7 +186,7 @@ export default function Footer() {
             />
             <select
               id="theme-select"
-              aria-label="Theme selector"
+              aria-label={t("app.footer.theme-selector")}
               class="cursor-pointer appearance-auto rounded-lg border border-green-900 bg-black py-1.5 pl-9 pr-8 text-sm font-medium text-gray hover:text-white hover:border-green-600 focus:outline-none focus:ring-1 focus:ring-green-600 transition-colors"
             >
               {themeOptions.map((option) => (
@@ -184,7 +206,7 @@ export default function Footer() {
             <span class="pointer-events-none absolute left-3 text-green-600 i-mdi-translate size-4" />
             <select
               id="footer-language-select"
-              aria-label="Language selector"
+              aria-label={t("app.footer.language-selector")}
               onChange={(e) => {
                 window.location.href = e.currentTarget.value;
               }}

@@ -1,12 +1,13 @@
 import { useHead } from "@solidjs/web";
 import { createSeoHead } from "@rimelight/seo/head";
 import { RLError } from "@rimelight/ui";
+import { t } from "@rimelight/i18n";
 
 export default function ErrorPage404() {
   useHead(() =>
     createSeoHead({
       title: "404 - Not Found",
-      description: "Page has not been found.",
+      description: t("app.text.page-has-not-been-found"),
       noindex: true,
       is404: true,
     }),

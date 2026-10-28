@@ -2,6 +2,7 @@ import { useHead } from "@solidjs/web";
 import { createSeoHead } from "@rimelight/seo/head";
 import { RLMarquee } from "@rimelight/ui";
 import ContactForm from "#components/app/ContactForm";
+import { t } from "@rimelight/i18n";
 
 interface SocialLink {
   icon: string;
@@ -51,36 +52,6 @@ interface ServiceItem {
   points: string[];
 }
 
-const services: ServiceItem[] = [
-  {
-    icon: "i-mdi-web",
-    title: "Web Development",
-    points: [
-      "Single Page Applications (SPAs)",
-      "Landing pages and business websites",
-      "Portfolio websites",
-    ],
-  },
-  {
-    icon: "i-mdi-code-braces",
-    title: "Software Development",
-    points: [
-      "REST APIs and backend services",
-      "CLI tools and automation scripts",
-      "System design and architecture",
-    ],
-  },
-  {
-    icon: "i-mdi-cloud-outline",
-    title: "DevOps & Cloud Infrastructure",
-    points: [
-      "Containerization & deployment with Docker",
-      "Cloud hosting & edge deployment (Cloudflare)",
-      "CI/CD pipelines & build automation",
-    ],
-  },
-];
-
 interface Project {
   title: string;
   status: string;
@@ -89,45 +60,85 @@ interface Project {
   previewUrl?: string;
 }
 
-const projects: Project[] = [
-  {
-    title: "octavianmironescu.com",
-    status: "Deployed",
-    image: "https://placehold.co/600x400/101010/16a34a?text=Portfolio+Website",
-    githubUrl: "https://github.com/MironescuOctavian/octavianmironescu.com",
-    previewUrl: "https://octavianmironescu.com",
-  },
-  {
-    title: "Backend API Service",
-    status: "In Development",
-    image: "https://placehold.co/600x400/101010/16a34a?text=Backend+Services",
-    githubUrl: "https://github.com/MironescuOctavian",
-    previewUrl: "https://github.com/MironescuOctavian",
-  },
-  {
-    title: "Full-stack Platform",
-    status: "Contributor",
-    image: "https://placehold.co/600x400/101010/16a34a?text=Full-stack+App",
-    githubUrl: "https://github.com/MironescuOctavian",
-    previewUrl: "https://github.com/MironescuOctavian",
-  },
-  {
-    title: "Developer Automation Tools",
-    status: "Deployed",
-    image: "https://placehold.co/600x400/101010/16a34a?text=Automation+Tools",
-    githubUrl: "https://github.com/MironescuOctavian",
-    previewUrl: "https://github.com/MironescuOctavian",
-  },
-];
-
 const projectBtnClass =
   "flex items-center justify-center p-3 rounded-xl border border-green-900 bg-black/60 text-gray-300 hover:text-white hover:border-green-600 transition-colors";
 
 export default function HomePage() {
+  const services: ServiceItem[] = [
+    {
+      icon: "i-mdi-web",
+      get title() {
+        return t("app.text.web-development");
+      },
+      points: [
+        "Single Page Applications (SPAs)",
+        "Landing pages and business websites",
+        "Portfolio websites",
+      ],
+    },
+    {
+      icon: "i-mdi-code-braces",
+      get title() {
+        return t("app.text.software-development");
+      },
+      points: [
+        "REST APIs and backend services",
+        "CLI tools and automation scripts",
+        "System design and architecture",
+      ],
+    },
+    {
+      icon: "i-mdi-cloud-outline",
+      get title() {
+        return t("app.text.devops-cloud-infrastructure");
+      },
+      points: [
+        "Containerization & deployment with Docker",
+        "Cloud hosting & edge deployment (Cloudflare)",
+        "CI/CD pipelines & build automation",
+      ],
+    },
+  ];
+  const projects: Project[] = [
+    {
+      title: "octavianmironescu.com",
+      status: "Deployed",
+      image: "https://placehold.co/600x400/101010/16a34a?text=Portfolio+Website",
+      githubUrl: "https://github.com/MironescuOctavian/octavianmironescu.com",
+      previewUrl: "https://octavianmironescu.com",
+    },
+    {
+      get title() {
+        return t("app.text.backend-api-service");
+      },
+      status: "In Development",
+      image: "https://placehold.co/600x400/101010/16a34a?text=Backend+Services",
+      githubUrl: "https://github.com/MironescuOctavian",
+      previewUrl: "https://github.com/MironescuOctavian",
+    },
+    {
+      get title() {
+        return t("app.text.full-stack-platform");
+      },
+      status: "Contributor",
+      image: "https://placehold.co/600x400/101010/16a34a?text=Full-stack+App",
+      githubUrl: "https://github.com/MironescuOctavian",
+      previewUrl: "https://github.com/MironescuOctavian",
+    },
+    {
+      get title() {
+        return t("app.text.developer-automation-tools");
+      },
+      status: "Deployed",
+      image: "https://placehold.co/600x400/101010/16a34a?text=Automation+Tools",
+      githubUrl: "https://github.com/MironescuOctavian",
+      previewUrl: "https://github.com/MironescuOctavian",
+    },
+  ];
   useHead(() =>
     createSeoHead({
-      title: "Octavian Mironescu",
-      description: "Personal website of Octavian Mironescu",
+      title: t("app.text.octavian-mironescu"),
+      description: t("app.text.personal-website-of-octavian-mironescu"),
     }),
   );
 
@@ -135,9 +146,9 @@ export default function HomePage() {
     <div class="w-full">
       {/* Hero Section */}
       <section class="flex flex-col p-12 w-full">
-        <p class="text-2xl text-green-500 font-medium mb-1">Hi, I'm Mironescu Octavian</p>
+        <p class="text-2xl text-green-500 font-medium mb-1">{t("page.home.hero.greeting")}</p>
         <header class="flex md:flex-row flex-col justify-start items-center gap-6 mt-2">
-          <h1 class="text-white font-bold text-6xl">Software Developer</h1>
+          <h1 class="text-white font-bold text-6xl">{t("page.home.hero.title")}</h1>
           <p class="text-3xl">
             Transforming ideas into interactive and seamless digital experiences with cutting-edge{" "}
             <span class="text-green-600">frontend</span> and{" "}
@@ -172,8 +183,8 @@ export default function HomePage() {
       {/* What I Do Section */}
       <section class="flex flex-col w-full px-12 py-12 gap-8">
         <div class="flex flex-col w-full gap-0">
-          <span class="text-lg text-green-500 font-medium mb-1">My skills</span>
-          <h2 class="text-4xl font-bold text-white mb-2">What I do?</h2>
+          <span class="text-lg text-green-500 font-medium mb-1">{t("page.home.skills.label")}</span>
+          <h2 class="text-4xl font-bold text-white mb-2">{t("page.home.skills.heading")}</h2>
         </div>
         <div class="flex flex-col lg:flex-row gap-8 lg:items-stretch">
           {/* Left: Service Accordions */}
@@ -205,7 +216,7 @@ export default function HomePage() {
               <div class="flex items-center justify-between px-5 py-4 border-b border-green-900/60 bg-green-950/10 shrink-0">
                 <div class="flex items-center gap-3">
                   <span class="w-6 h-6 text-green-500 inline-block shrink-0 i-mdi-github" />
-                  <h3 class="text-white text-lg font-medium">GitHub Activity</h3>
+                  <h3 class="text-white text-lg font-medium">{t("page.home.github.heading")}</h3>
                 </div>
                 <a
                   href="https://github.com/MironescuOctavian"
@@ -221,7 +232,7 @@ export default function HomePage() {
               <div class="flex-1 min-h-0 p-5 flex items-center justify-center overflow-hidden">
                 <img
                   src="https://ghchart.rshah.org/16a34a/MironescuOctavian"
-                  alt="MironescuOctavian GitHub contribution calendar"
+                  alt={t("page.home.github.calendar-alt")}
                   class="w-full max-h-full h-auto object-contain"
                   loading="lazy"
                 />
@@ -233,8 +244,8 @@ export default function HomePage() {
 
       {/* Projects Section */}
       <section id="projects" class="py-12 px-12 border-t border-green-900/60 text-white">
-        <span class="text-lg text-green-500 font-medium mb-1">My work</span>
-        <h2 class="text-4xl md:text-5xl font-bold mb-8">Projects</h2>
+        <span class="text-lg text-green-500 font-medium mb-1">{t("page.home.projects.label")}</span>
+        <h2 class="text-4xl md:text-5xl font-bold mb-8">{t("page.home.projects.heading")}</h2>
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
           {projects.map((project) => (
@@ -265,7 +276,7 @@ export default function HomePage() {
                       href={project.githubUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      aria-label="GitHub Repository"
+                      aria-label={t("page.home.projects.github-aria")}
                       class={projectBtnClass}
                     >
                       <span class="i-mdi-code-tags text-xl" />
@@ -276,7 +287,7 @@ export default function HomePage() {
                       href={project.previewUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      aria-label="Live Preview"
+                      aria-label={t("page.home.projects.preview-aria")}
                       class={projectBtnClass}
                     >
                       <span class="i-mdi-arrow-top-right text-xl" />
@@ -295,7 +306,7 @@ export default function HomePage() {
             rel="noopener noreferrer"
             class="flex items-center justify-center gap-2 mt-10 text-gray-300 hover:text-white border border-green-900 hover:border-green-600 p-3.5 w-md rounded-full bg-black/40 hover:bg-green-950/20 hover:scale-[1.01] transition-all"
           >
-            <span class="text-base font-medium">More projects on GitHub</span>
+            <span class="text-base font-medium">{t("page.home.projects.more")}</span>
             <span class="i-mdi-github text-xl text-green-500" />
           </a>
         </div>
@@ -304,8 +315,10 @@ export default function HomePage() {
       {/* Contact Section */}
       <section id="contact" class="w-full py-12 px-12 border-t border-green-900/60 text-white">
         <div class="w-full">
-          <span class="text-lg text-green-500 font-medium mb-1">Let's talk</span>
-          <h2 class="text-4xl md:text-5xl font-bold mb-6">Contact</h2>
+          <span class="text-lg text-green-500 font-medium mb-1">
+            {t("page.home.contact.label")}
+          </span>
+          <h2 class="text-4xl md:text-5xl font-bold mb-6">{t("page.home.contact.heading")}</h2>
 
           <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div class="flex flex-col justify-start text-gray-300 space-y-4">
@@ -324,7 +337,7 @@ export default function HomePage() {
               </div>
               <div class="flex items-center gap-3">
                 <span class="i-mdi-map-marker-outline text-green-500 text-xl" />
-                <span class="text-white">Romania</span>
+                <span class="text-white">{t("page.home.contact.country")}</span>
               </div>
             </div>
 

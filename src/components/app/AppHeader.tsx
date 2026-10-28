@@ -3,12 +3,24 @@ import { RLButton, RLHeader, RLNavigationMenu } from "@rimelight/ui";
 
 export default function Header() {
   const items = [
-    { label: t("nav.home"), href: "/" },
-    { label: t("nav.blog"), description: "Blog stuff", href: "/blog" },
-    { label: t("nav.resume"), description: "Information about myself", href: "/resume" },
-    { label: t("nav.legal"), description: "Legal Stuff", href: "/legal" },
-    { label: t("nav.about"), description: "Information about the website", href: "/about" },
-    { label: t("nav.contact"), description: "Get in touch", href: "/contact" },
+    { label: t("app.header.nav.home"), href: "/" },
+    { label: t("app.header.nav.blog"), description: t("app.text.blog-stuff"), href: "/blog" },
+    {
+      label: t("app.header.nav.resume"),
+      description: t("app.text.information-about-myself"),
+      href: "/resume",
+    },
+    { label: t("app.header.nav.legal"), description: t("app.text.legal-stuff"), href: "/legal" },
+    {
+      label: t("app.header.nav.about"),
+      description: t("app.text.information-about-the-website"),
+      href: "/about",
+    },
+    {
+      label: t("app.header.nav.contact"),
+      description: t("app.text.get-in-touch"),
+      href: "/contact",
+    },
   ];
 
   return (

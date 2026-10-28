@@ -1,8 +1,10 @@
 {
   "page": {
     "contact": {
-      "title": "Contactează-ne",
-      "description": "Intră în legătură cu Octavian Mironescu.",
+      "meta": {
+        "title": "Contactează-ne",
+        "description": "Intră în legătură cu Octavian Mironescu."
+      },
       "hero": {
         "description": "Ai o întrebare, o propunere sau vrei să colaborezi? Trimite-ne un mesaj direct.",
         "title": "Intră în legătură"
@@ -96,7 +98,7 @@
         "languages": "Limbaje și framework-uri",
         "environment": "Mediu de dezvoltare",
         "build": "Build și pachete",
-        "deployment": "Deployment"
+        "deployment": "Implementare"
       },
       "experience": {
         "heading": "Experiență",
@@ -130,7 +132,7 @@
             ]
           },
           {
-            "role": "Freelancing",
+            "role": "Activitate freelance",
             "period": "Februarie 2024 - Prezent",
             "location": "București, România - La birou/Remote",
             "summary": "Am scris, testat și întreținut software și site-uri pentru diverși clienți, pe bază de contract."
@@ -166,8 +168,7 @@
       },
       "certifications": {
         "heading": "Certificări",
-        "id": "ID",
-        "items": []
+        "id": "ID"
       }
     },
     "legal": {
@@ -176,26 +177,117 @@
         "description": "Politici și acorduri."
       },
       "empty": "Încă nu există documente legale."
+    },
+    "blog": {
+      "meta": {
+        "title": "Octavian Mironescu",
+        "description": "Site-ul personal al lui Octavian Mironescu"
+      },
+      "categories": {
+        "aria-label": "Categorii"
+      },
+      "empty": "Nu există încă articole de blog."
+    },
+    "branding": {
+      "heading": "Identitate vizuală"
+    },
+    "other-documents": {
+      "heading": "Alte documente"
+    },
+    "privacy-policy": {
+      "heading": "Politica de confidențialitate"
+    },
+    "home": {
+      "hero": {
+        "greeting": "Salut, sunt Mironescu Octavian",
+        "title": "Dezvoltator software"
+      },
+      "skills": {
+        "label": "Competențele mele",
+        "heading": "Ce fac?"
+      },
+      "github": {
+        "heading": "Activitate pe GitHub",
+        "calendar-alt": "Calendarul contribuțiilor pe GitHub ale lui MironescuOctavian"
+      },
+      "projects": {
+        "label": "Lucrările mele",
+        "heading": "Proiecte",
+        "github-aria": "Depozit GitHub",
+        "preview-aria": "Previzualizare live",
+        "more": "Mai multe proiecte pe GitHub"
+      },
+      "contact": {
+        "label": "Hai să vorbim",
+        "heading": "Contact",
+        "country": "România"
+      }
     }
   },
-  "nav": {
-    "home": "Acasă",
-    "blog": "Blog",
-    "legal": "Informații Legale",
-    "about": "Despre",
-    "resume": "CV",
-    "contact": "Contact"
-  },
-  "legal": {
-    "last-updated-on": "Ultima actualizare pe"
-  },
-  "blog": {
-    "title": "Octavian Mironescu",
-    "description": "Site-ul personal al lui Octavian Mironescu"
-  },
-  "languages": {
-    "en": "English",
-    "ro": "Română",
-    "pt": "Português"
+  "app": {
+    "header": {
+      "nav": {
+        "home": "Acasă",
+        "blog": "Blog",
+        "legal": "Informații Legale",
+        "about": "Despre",
+        "resume": "CV",
+        "contact": "Contact"
+      }
+    },
+    "loading": {
+      "page": "Se încarcă.",
+      "post": "Se încarcă articolul...",
+      "document": "Se încarcă documentul..."
+    },
+    "footer": {
+      "home-aria": "Acasă",
+      "tagline": "Nu înceta niciodată să cauți.",
+      "theme-selector": "Selector de temă",
+      "language-selector": "Selector de limbă"
+    },
+    "text": {
+      "resources": "Resources",
+      "branding": "Branding",
+      "legal": "Legal",
+      "privacy-policy": "Privacy Policy",
+      "other-documents": "Other Documents",
+      "blog-stuff": "Blog stuff",
+      "information-about-myself": "Information about myself",
+      "legal-stuff": "Legal Stuff",
+      "information-about-the-website": "Information about the website",
+      "get-in-touch": "Get in touch",
+      "page-has-not-been-found": "Page has not been found.",
+      "about": "About",
+      "about-this-website": "About this website",
+      "branding-guidelines-and-assets": "Branding guidelines and assets",
+      "octavian-mironescu": "Octavian Mironescu",
+      "personal-website-of-octavian-mironescu": "Personal website of Octavian Mironescu",
+      "additional-legal-documents-and-resources": "Additional legal documents and resources",
+      "privacy-policy-for-octavianmironescu-com": "Privacy Policy for octavianmironescu.com",
+      "java": "Java",
+      "spring-boot": "Spring Boot",
+      "intellij": "IntelliJ",
+      "visual-studio-code": "Visual Studio Code",
+      "gradle": "Gradle",
+      "docker": "Docker",
+      "system": "System",
+      "white": "White",
+      "dark": "Dark",
+      "web-development": "Web Development",
+      "software-development": "Software Development",
+      "devops-cloud-infrastructure": "DevOps & Cloud Infrastructure",
+      "backend-api-service": "Backend API Service",
+      "full-stack-platform": "Full-stack Platform",
+      "developer-automation-tools": "Developer Automation Tools",
+      "github": "GitHub",
+      "typescript": "TypeScript",
+      "vue": "Vue",
+      "solidjs": "SolidJS",
+      "unocss": "UnoCSS",
+      "webstorm": "WebStorm",
+      "vite-plus": "Vite-plus",
+      "cloudflare": "Cloudflare"
+    }
   }
 }
