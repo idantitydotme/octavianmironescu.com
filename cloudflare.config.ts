@@ -25,7 +25,7 @@ export default defineConfig({
         name: "octavianmironescu-dot-com",
       }),
       DB: bindings.d1({
-        id: "4d159ab6-83f8-4ca5-baa9-a4516b3086ce",
+        id: "5a1db703-9438-4880-9770-490548e07814",
       }),
       EMAIL: bindings.sendEmail(),
       RATE_LIMIT: bindings.rateLimit({
