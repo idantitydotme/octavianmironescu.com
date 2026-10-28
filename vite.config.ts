@@ -35,14 +35,14 @@ export default defineConfig({
     seo({
       id: "octavianmironescu.com",
       url: "https://octavianmironescu.com",
-      name: "Octavian Mironescu",
-      description: "Personal website of Octavian Mironescu",
-      author: "Octavian Mironescu",
+      name: "Mironescu Octavian",
+      description: "Personal website of Mironescu Octavian",
+      author: "Mironescu Octavian",
       branding: {
-        logo: { alt: "Octavian Mironescu" },
+        logo: { alt: "Mironescu Octavian" },
         colors: { themeColor: "#ffffff", backgroundColor: "#ffffff" },
       },
-      titleTemplate: "%s | Octavian Mironescu",
+      titleTemplate: "%s | Mironescu Octavian",
       og: {
         routes: {
           "*/blog/*": "./src/components/og/BlogOgCard.tsx",

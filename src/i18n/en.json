@@ -3,7 +3,7 @@
     "contact": {
       "meta": {
         "title": "Contact Us",
-        "description": "Get in touch with Octavian Mironescu directly."
+        "description": "Get in touch with Mironescu Octavian directly."
       },
       "hero": {
         "title": "Get in Touch",
@@ -36,10 +36,10 @@
     "resume": {
       "meta": {
         "title": "Resume",
-        "description": "Resume of Octavian Mironescu, Java & Web Software Developer."
+        "description": "Resume of Mironescu Octavian, Java & Web Software Developer."
       },
       "hero": {
-        "title": "Hey! I'm Octavian Mironescu",
+        "title": "Hey! I'm Mironescu Octavian",
         "description": "I'm a Java & Web Software Developer.",
         "action": {
           "hire": "Hire me"
@@ -212,8 +212,8 @@
     },
     "blog": {
       "meta": {
-        "title": "Octavian Mironescu",
-        "description": "Personal website of Octavian Mironescu"
+        "title": "Mironescu Octavian",
+        "description": "Personal website of Mironescu Octavian"
       },
       "categories": {
         "aria-label": "Categories"
@@ -301,8 +301,8 @@
       "about": "About",
       "about-this-website": "About this website",
       "branding-guidelines-and-assets": "Branding guidelines and assets",
-      "octavian-mironescu": "Octavian Mironescu",
-      "personal-website-of-octavian-mironescu": "Personal website of Octavian Mironescu",
+      "octavian-mironescu": "Mironescu Octavian",
+      "personal-website-of-octavian-mironescu": "Personal website of Mironescu Octavian",
       "additional-legal-documents-and-resources": "Additional legal documents and resources",
       "privacy-policy-for-octavianmironescu-com": "Privacy Policy for octavianmironescu.com",
       "java": "Java",

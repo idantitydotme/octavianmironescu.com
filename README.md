@@ -1,12 +1,12 @@
 # octavianmironescu.com
 
-The personal website of Octavian Mironescu. The site is a work in progress. It is trilingual (English, Portuguese, and Romanian), and content is managed through `@rimelight/cms`.
+The personal website of Mironescu Octavian. The site is a work in progress. It is trilingual (English, Portuguese, and Romanian), and content is managed through `@rimelight/cms`.
 
 ## Features
 
 - **Pages**: about, blog, resume, contact, branding, legal, privacy policy, and other documents.
 - **Blog**: posts with Open Graph cards per post.
-- **Contact form**: sent by email, with rate limiting.
+- **Contact form**: protected by Cloudflare Turnstile and rate limiting, and sent by email.
 - **SEO**: sitemap, robots, web manifest, `llms.txt`, and Open Graph images.
 - **Localization**: English, Portuguese, and Romanian, with locale-prefixed URLs.
 

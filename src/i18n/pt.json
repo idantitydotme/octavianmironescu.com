@@ -3,7 +3,7 @@
     "contact": {
       "meta": {
         "title": "Entre em contato",
-        "description": "Entre em contato com Octavian Mironescu diretamente."
+        "description": "Entre em contato com Mironescu Octavian diretamente."
       },
       "hero": {
         "description": "Tem uma pergunta, proposta ou quer colaborar? Envie uma mensagem diretamente.",
@@ -36,10 +36,10 @@
     "resume": {
       "meta": {
         "title": "Currículo",
-        "description": "Currículo de Octavian Mironescu, desenvolvedor de software Java e web."
+        "description": "Currículo de Mironescu Octavian, desenvolvedor de software Java e web."
       },
       "hero": {
-        "title": "Olá! Eu sou Octavian Mironescu",
+        "title": "Olá! Eu sou Mironescu Octavian",
         "description": "Sou desenvolvedor de software Java e web.",
         "action": {
           "hire": "Contrate-me"
@@ -212,8 +212,8 @@
     },
     "blog": {
       "meta": {
-        "title": "Octavian Mironescu",
-        "description": "Site pessoal de Octavian Mironescu"
+        "title": "Mironescu Octavian",
+        "description": "Site pessoal de Mironescu Octavian"
       },
       "categories": {
         "aria-label": "Categorias"
@@ -301,8 +301,8 @@
       "about": "Sobre",
       "about-this-website": "Sobre este site",
       "branding-guidelines-and-assets": "Diretrizes de marca e recursos visuais",
-      "octavian-mironescu": "Octavian Mironescu",
-      "personal-website-of-octavian-mironescu": "Site pessoal de Octavian Mironescu",
+      "octavian-mironescu": "Mironescu Octavian",
+      "personal-website-of-octavian-mironescu": "Site pessoal de Mironescu Octavian",
       "additional-legal-documents-and-resources": "Documentos jurídicos e recursos adicionais",
       "privacy-policy-for-octavianmironescu-com": "Política de Privacidade do octavianmironescu.com",
       "java": "Java",
