@@ -1,10 +1,10 @@
 import { useHead } from "@solidjs/web";
-import { createSeoHead } from "@rimelight/seo/head";
+import { createPageHead } from "@rimelight/seo/head";
 import { t } from "@rimelight/i18n";
 
 export default function OtherDocumentsPage() {
   useHead(() =>
-    createSeoHead({
+    createPageHead({
       title: t("app.text.other-documents"),
       description: t("app.text.additional-legal-documents-and-resources"),
     }),

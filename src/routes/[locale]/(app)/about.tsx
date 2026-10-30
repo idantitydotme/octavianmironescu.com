@@ -1,12 +1,12 @@
 import { useHead } from "@solidjs/web";
-import { createSeoHead } from "@rimelight/seo/head";
+import { createPageHead } from "@rimelight/seo/head";
 import { getLocaleUrl } from "@rimelight/i18n";
 import { t } from "@rimelight/i18n";
 
 export default function AboutPage() {
   const aboutURL = getLocaleUrl("/about");
   useHead(() =>
-    createSeoHead({
+    createPageHead({
       title: t("app.text.about"),
       description: t("app.text.about-this-website"),
     }),

@@ -1,10 +1,10 @@
 import { useHead } from "@solidjs/web";
-import { createSeoHead } from "@rimelight/seo/head";
+import { createPageHead } from "@rimelight/seo/head";
 import { t } from "@rimelight/i18n";
 
 export default function PrivacyPolicyPage() {
   useHead(() =>
-    createSeoHead({
+    createPageHead({
       title: t("app.text.privacy-policy"),
       description: t("app.text.privacy-policy-for-octavianmironescu-com"),
     }),

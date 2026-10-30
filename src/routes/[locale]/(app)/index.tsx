@@ -1,5 +1,5 @@
 import { useHead } from "@solidjs/web";
-import { createSeoHead } from "@rimelight/seo/head";
+import { createPageHead } from "@rimelight/seo/head";
 import { RLMarquee } from "@rimelight/ui";
 import ContactForm from "#components/app/ContactForm";
 import { t } from "@rimelight/i18n";
@@ -136,7 +136,7 @@ export default function HomePage() {
     },
   ];
   useHead(() =>
-    createSeoHead({
+    createPageHead({
       title: t("app.text.octavian-mironescu"),
       description: t("app.text.personal-website-of-octavian-mironescu"),
     }),
